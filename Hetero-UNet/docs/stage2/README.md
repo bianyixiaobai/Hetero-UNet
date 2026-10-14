@@ -74,6 +74,7 @@ L_C = 原nnU-Net分割/深监督损失 + 0.1 * L_boundary
 
 - [服务器拉取、短程检查与正式运行](SERVER_RUNBOOK.md)
 - [逐项修改记录与本机验证](CHANGELOG.md)
+- [Git交付记录与恢复工作入口](DELIVERY.md)
 - 本机基础测试（内层`Hetero-UNet/umamba`目录）：`python -m unittest discover -s nnunetv2/tests/unit_tests -p "test_*.py" -v`
 
 CPU单元测试只需PyTorch，不需要Mamba CUDA。部分测试明确使用小型替身验证接口和梯度；不能将其写成真实CUDA kernel或完整医学分割训练验证。
