@@ -74,6 +74,8 @@ class nnUNetPredictor(object):
         """
         if use_folds is None:
             use_folds = nnUNetPredictor.auto_detect_available_folds(model_training_output_dir, checkpoint_name)
+        if not use_folds:
+            raise ValueError(f'No folds containing {checkpoint_name} found in {model_training_output_dir}')
 
         dataset_json = load_json(join(model_training_output_dir, 'dataset.json'))
         plans = load_json(join(model_training_output_dir, 'plans.json'))
@@ -85,9 +87,7 @@ class nnUNetPredictor(object):
         parameters = []
         for i, f in enumerate(use_folds):
             f = int(f) if f != 'all' else f
-            #checkpoint = torch.load(join(model_training_output_dir, f'fold_{f}', checkpoint_name),
-            #                        map_location=torch.device('cpu'))
-            checkpoint = torch.load(join(model_training_output_dir, 'fold_all', 'checkpoint_best.pth'),
+            checkpoint = torch.load(join(model_training_output_dir, f'fold_{f}', checkpoint_name),
                                     map_location=torch.device('cpu'))
             if i == 0:
                 trainer_name = checkpoint['trainer_name']
@@ -148,6 +148,8 @@ class nnUNetPredictor(object):
         fold_folders = [i for i in fold_folders if i != 'fold_all']
         fold_folders = [i for i in fold_folders if isfile(join(model_training_output_dir, i, checkpoint_name))]
         use_folds = [int(i.split('_')[-1]) for i in fold_folders]
+        if not use_folds and isfile(join(model_training_output_dir, 'fold_all', checkpoint_name)):
+            use_folds = ['all']
         print(f'found the following folds: {use_folds}')
         return use_folds
 

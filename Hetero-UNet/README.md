@@ -2,6 +2,13 @@
 
 Official repository for Hetero-UNet: Heterogeneous Transformer with Mamba for Medical Image Segmentation.
 
+## Stage-two research implementation
+
+F (Block-AttnRes), C (boundary-guided Block-AttnRes), and the boundary-supervision
+control are described in [the stage-two implementation and deployment notes](docs/stage2/README.md).
+The original MambaUNet and its MHA layout are preserved. The notes distinguish
+local CPU verification from the CUDA smoke test and full experiments still to run.
+
 ## Installation 
 
 Download code:
@@ -46,7 +53,7 @@ nnUNetv2_train DATASET_ID 3d_fullres all -tr nnUNetTrainerMambaUNet
 ## Inference
 
 ```python
-nnUNetv2_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -d DATASET_ID -c CONFIGURATION -tr nnUNetTrainerMambaUNet --disable_tta
+nnUNetv2_predict -i INPUT_FOLDER -o OUTPUT_FOLDER -d DATASET_ID -c CONFIGURATION -tr nnUNetTrainerMambaUNet -f all -chk checkpoint_best.pth --disable_tta
 ```
 `CONFIGURATION` can be `2d` and `3d_fullres` for 2D and 3D models, respectively.
 
