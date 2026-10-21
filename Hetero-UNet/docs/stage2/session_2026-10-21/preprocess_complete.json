@@ -1,0 +1,7 @@
+{
+  "status": "completed",
+  "training_cases": 50,
+  "external_cases_used": 0,
+  "folder": "/hy-tmp/Hetero-UNet/data/nnUNet_preprocessed/Dataset701_AbdomenCT/nnUNetPlans_3d_fullres",
+  "plans_sha256": "de3ab2e210dab22a51221a8a02512e3524b1479c1395c40a526c92d3076e456f"
+}

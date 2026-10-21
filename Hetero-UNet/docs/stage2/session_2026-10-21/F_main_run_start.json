@@ -1,0 +1,111 @@
+{
+  "run_id": "20261021T060628.461358Z_e85823bd",
+  "status": "training",
+  "started_utc": "20261021T060628.461358Z",
+  "arguments": {
+    "model": "F",
+    "dataset": "701",
+    "configuration": "3d_fullres",
+    "fold": "all",
+    "development": false,
+    "plans": "nnUNetPlans",
+    "seed": 1234,
+    "results_root": "/hy-tmp/stage2_results",
+    "device": "cuda",
+    "smoke": false,
+    "continue_training": false,
+    "skip_final_validation": true,
+    "use_compressed": false,
+    "dry_run": false,
+    "effective_results_root": "/hy-tmp/stage2_results/stage2_F_seed1234",
+    "trainer": "nnUNetTrainerMambaUNetBlockAttnRes",
+    "final_validation": false
+  },
+  "argv": [
+    "scripts/run_stage2.py",
+    "--model",
+    "F",
+    "--seed",
+    "1234",
+    "--results-root",
+    "/hy-tmp/stage2_results",
+    "--skip-final-validation"
+  ],
+  "git": {
+    "commit": "9fe70ac570a0e14ebce30daa4a16a22e49b4f3fd",
+    "dirty": false,
+    "status_porcelain": ""
+  },
+  "fingerprints": {
+    "source_sha256": {
+      "scripts/run_stage2.py": "1c745c07648148df7e03de2350d8a685b4fb1c21db0e52b47abfb16f65f28180",
+      "umamba/nnunetv2/paths.py": "2bd0ec0fc718548611fa81fcec5ae4b98f83163c9d4bbf2dca8550b563c9f5d3",
+      "umamba/nnunetv2/configuration.py": "c62f73b1bc1111b0bc9c3dfe5c8d1a481047bbb2c128b6017ede97da2af17beb",
+      "umamba/nnunetv2/nets/MambaUNet.py": "63d490b95d7026978ec606e08f9b1e05d68be19a260e7dda824d110be2352fd7",
+      "umamba/nnunetv2/nets/MambaUNetAttnRes.py": "635bc8dd2549fc5683f91e4217fb4b143996127214a6245a139c13f3f0b59dd4",
+      "umamba/nnunetv2/nets/block_attention_residuals.py": "c2ae3ae48c692c752ffd30194e8c16737ad3caa6f2c62c6575fd25302c804195",
+      "umamba/nnunetv2/nets/boundary_prior.py": "7975887abf86ec942c608e811524158cb43a6d6e01bdc9ddd9b956d7d0266872",
+      "umamba/nnunetv2/training/loss/boundary.py": "0ad250573b7d41e613b419955e18fcf35c16febc29da1fc3f58faf2809911b88",
+      "umamba/nnunetv2/training/loss/segmentation_boundary.py": "0b873abf7a647fb096cfc750e4c3aa717e62901744cf25197547ae53e0e21d57",
+      "umamba/nnunetv2/training/lr_scheduler/polylr.py": "db00fdf7e5267ffbf05f6dfc7939c92beff31adeb0043efe51a9e66dd0fba4a1",
+      "umamba/nnunetv2/training/nnUNetTrainer/nnUNetTrainerMambaUNet.py": "0bf98eda0d4168b93a957d1f7de62365649571a3688b17af6878706537d44eb5",
+      "umamba/nnunetv2/training/nnUNetTrainer/nnUNetTrainer.py": "f6bda5eef242a0295c480dbe7f3ac054a21b8a263762bb51f30b0085e3726dd5",
+      "umamba/nnunetv2/training/nnUNetTrainer/nnUNetTrainerMambaUNetAttnRes.py": "6b1307857eaf0104e987f20544001d99e038a11f263f8bee2890dd234d0db0a6",
+      "umamba/nnunetv2/inference/predict_from_raw_data.py": "d89799d3da89c754cd9a78c1c29a0065a5f61ad4862f1b8c2c6a28fe1586636b"
+    },
+    "descriptor_sha256": {
+      "nnUNetPlans.json": "de3ab2e210dab22a51221a8a02512e3524b1479c1395c40a526c92d3076e456f",
+      "dataset.json": "2af311aa621df317427ce2a443a2ba78f1869449ebefc5a3be8ecca50e4228b2",
+      "splits_final.json": null
+    },
+    "scope": "named code and dataset descriptors; excludes image-array content"
+  },
+  "environment": {
+    "nnUNet_raw": "/hy-tmp/Hetero-UNet/data/nnUNet_raw",
+    "nnUNet_preprocessed": "/hy-tmp/Hetero-UNet/data/nnUNet_preprocessed",
+    "nnUNet_results": "/hy-tmp/stage2_results/stage2_F_seed1234",
+    "CUDA_VISIBLE_DEVICES": "0",
+    "nnUNet_compile": "false",
+    "WANDB_MODE": "disabled"
+  },
+  "runtime": {
+    "python": "3.11.8 (main, Feb 25 2024, 16:41:26) [GCC 9.4.0]",
+    "torch": "2.2.1+cu121",
+    "cuda": "12.1",
+    "cudnn_benchmark": true,
+    "cudnn_deterministic": false
+  },
+  "protocol": {
+    "scope": "frozen_CT701",
+    "frozen_ct_enforced": true,
+    "eligible_for_frozen_CT701_comparison": true,
+    "required_physical_batch_size": 2,
+    "required_patch_size": [
+      40,
+      224,
+      192
+    ],
+    "trainer": "nnUNetTrainerMambaUNetBlockAttnRes",
+    "seed": 1234,
+    "num_epochs": 1000,
+    "train_iterations_per_epoch": 250,
+    "validation_iterations_per_epoch": 50,
+    "batch_size": 2,
+    "patch_size": [
+      40,
+      224,
+      192
+    ],
+    "initial_lr": 0.01,
+    "mha_batch_first": false,
+    "physical_batch_must_match_across_models": true,
+    "checkpoint_selection_for_external_evaluation": "checkpoint_best.pth",
+    "full_volume_validation_requested": false,
+    "epoch_validation_remains_enabled": true,
+    "external_50_evaluation": "Separate inference/DSC/NSD step; not run by this launcher"
+  },
+  "resume_checkpoint": null,
+  "resume_rng_note": "Upstream checkpoints do not restore Python/NumPy worker RNG streams; resume is not claimed to be bitwise identical to uninterrupted training",
+  "trainer_output_folder": "/hy-tmp/stage2_results/stage2_F_seed1234/Dataset701_AbdomenCT/nnUNetTrainerMambaUNetBlockAttnRes__nnUNetPlans__3d_fullres/fold_all",
+  "console_log": "/hy-tmp/stage2_results/stage2_F_seed1234/Dataset701_AbdomenCT/nnUNetTrainerMambaUNetBlockAttnRes__nnUNetPlans__3d_fullres/fold_all/stage2_console_20261021T060628.461358Z_e85823bd.log"
+}
