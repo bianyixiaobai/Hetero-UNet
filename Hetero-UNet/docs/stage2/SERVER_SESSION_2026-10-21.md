@@ -1,5 +1,7 @@
 # 2026-10-21 新实例恢复与CUDA验收
 
+> 2026-10-22最新：F已在500轮迁至V100续训至累计1000轮，C暂缓；按用户要求完整保存4090项目后释放旧机。以[迁移与完整保存记录](MIGRATION_2026-10-22.md)为准，本页原实例配置及队列安排保留为历史记录。
+
 > 最新安排：用户晚间要求只跑完F、备份后关机，C暂缓；19:46已切换，F没有重启。用户已刷新OSS授权至10月22日19:42北京时间。执行入口见[F-only当前记录](F_ONLY_AUTOSHUTDOWN_2026-10-21.md)，下文原F→C队列与授权说明属于历史过程。
 
 ## 当前状态
@@ -48,7 +50,7 @@ python scripts/check_stage2_cuda.py \
 
 已恢复三个原始数据ZIP、原基线权重TAR、`backup/pred50_artifacts_20261013.zip`。ZIP读取至EOF校验CRC并保存各压缩NIfTI的SHA256，忽略两个macOS `._`元数据文件。训练与外评各50例的图像/标签ID一一对应，检查NIfTI形状和affine，病例ID无交叉；这不等同于按患者身份去重审计。
 
-原预处理数组没有备份，故从权重归档提取原`plans.json`、`dataset.json`和`dataset_fingerprint.json`，只运行`nnUNetv2_preprocess -d 701 -c 3d_fullres -np 4`，**没有重新规划网络或spacing**。结果50个npz与50个pkl，病例均来自训练集。plans SHA256为`de3ab2e210dab22a51221a8a02512e3524b1479c1395c400a526c92d3076e456f`。不声称重建数组与已丢失的旧数组逐位相同。
+原预处理数组没有备份，故从权重归档提取原`plans.json`、`dataset.json`和`dataset_fingerprint.json`，只运行`nnUNetv2_preprocess -d 701 -c 3d_fullres -np 4`，**没有重新规划网络或spacing**。结果50个npz与50个pkl，病例均来自训练集。plans SHA256为`de3ab2e210dab22a51221a8a02512e3524b1479c1395c40a526c92d3076e456f`（2026-10-22纠正本记录曾多写一个0的65字符笔误；原始训练清单及plans文件未改变）。不声称重建数组与已丢失的旧数组逐位相同。
 
 旧50例预测、两个CSV及低内存补丁已恢复：NSD CSV与本机文件SHA256相同；DSC CSV文件SHA256不同，但按病例和13器官比较的650个数值全部相同。归档README中的论文指标说明属于旧注释，不用来替代工作计划中核对过的论文数字。
 

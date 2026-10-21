@@ -1,0 +1,46 @@
+{
+  "status": "paused_for_migration",
+  "paused_utc": "2026-10-21T17:53:55.945234+00:00",
+  "trainer_process": {
+    "pid": 12995,
+    "state": "S",
+    "ppid": 12992,
+    "start_ticks": 1685311803,
+    "argv": [
+      "python",
+      "-u",
+      "scripts/run_stage2.py",
+      "--model",
+      "F",
+      "--seed",
+      "1234",
+      "--results-root",
+      "/hy-tmp/stage2_results",
+      "--skip-final-validation"
+    ]
+  },
+  "observed_running_epoch_zero_based": 500,
+  "resume_from": "checkpoint_latest.pth",
+  "checkpoints": [
+    {
+      "file": "checkpoint_latest.pth",
+      "epoch": 500,
+      "best_ema": 0.9494968278907139,
+      "bytes": 724037052,
+      "logging_epochs": 500
+    },
+    {
+      "file": "checkpoint_best.pth",
+      "epoch": 486,
+      "best_ema": 0.9494968278907139,
+      "bytes": 724018944,
+      "logging_epochs": 486
+    }
+  ],
+  "target_total_epochs": 1000,
+  "deferred_models": [
+    "C"
+  ],
+  "original_model_source_modified": false,
+  "note": "In-progress iterations after the saved epoch are discarded on migration; RNG not bitwise restored."
+}

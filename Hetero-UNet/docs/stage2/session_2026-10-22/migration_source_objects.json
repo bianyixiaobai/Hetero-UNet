@@ -1,0 +1,30 @@
+{
+  "status": "uploaded_pending_destination_verification",
+  "resume_epoch": 500,
+  "target_total_epochs": 1000,
+  "training_commit": "9fe70ac570a0e14ebce30daa4a16a22e49b4f3fd",
+  "created_utc": "2026-10-21T17:56:33.719927+00:00",
+  "objects": [
+    {
+      "name": "F_epoch500_results.tar",
+      "bytes": 1449123840,
+      "sha256": "283d49d889f344f946c71d3c01e054ed3b0bc0060aef08374ffa367a8396d8ec",
+      "remote": "oss://backup/stage2_20261022/migration_epoch500/F_epoch500_results.tar",
+      "upload_completed_utc": "2026-10-21T17:57:38.820386+00:00"
+    },
+    {
+      "name": "CT701_preprocessed_exact.tar",
+      "bytes": 3365181440,
+      "sha256": "6c5cd590349dee5e8a17e18f03a3eef96efcf333a8832a434e19dac00226a792",
+      "remote": "oss://backup/stage2_20261022/migration_epoch500/CT701_preprocessed_exact.tar",
+      "upload_completed_utc": "2026-10-21T17:59:30.700567+00:00"
+    },
+    {
+      "name": "migration_audit.tar",
+      "bytes": 1003520,
+      "sha256": "a1e8d3a80c0289996bd2c914557e5e0cc8e781e4d16bbd50131509cf0a320723",
+      "remote": "oss://backup/stage2_20261022/migration_epoch500/migration_audit.tar",
+      "upload_completed_utc": "2026-10-21T17:59:32.134219+00:00"
+    }
+  ]
+}

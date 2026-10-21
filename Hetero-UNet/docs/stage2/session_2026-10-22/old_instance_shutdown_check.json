@@ -1,0 +1,13 @@
+{
+  "official_shutdown_returncode": 0,
+  "requested_utc": "2026-10-21T18:43:38.952320+00:00",
+  "source_hostname": "I2bdb493e5700c01f4e",
+  "destination_hostname": "I2bde78031f00701d9e",
+  "full_project_files_verified": 1091,
+  "missing_files": 0,
+  "checked_utc": "2026-10-21T18:44:05.479663+00:00",
+  "status": "shutdown_command_returned_old_SSH_inaccessible",
+  "old_ssh_reachable": false,
+  "old_ssh_error": "[Errno 111] Connection refused",
+  "old_ssh_error_number": 111
+}

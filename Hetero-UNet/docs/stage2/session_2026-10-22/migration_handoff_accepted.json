@@ -1,0 +1,48 @@
+{
+  "status": "destination_handoff_accepted",
+  "checked_utc": "2026-10-21T18:09:09.019341+00:00",
+  "destination_hostname": "I2bde78031f00701d9e",
+  "source_hostname": "I2bdb493e5700c01f4e",
+  "resume_epoch": 500,
+  "target_total_epochs": 1000,
+  "first_resumed_epoch_completed": true,
+  "current_epoch_zero_based": 501,
+  "epoch_seconds_observed": [
+    142.39
+  ],
+  "finite_training_and_validation_loss": true,
+  "latest_train_loss": -0.7488,
+  "latest_validation_loss": -0.7682,
+  "source_commit": "9fe70ac570a0e14ebce30daa4a16a22e49b4f3fd",
+  "source_fingerprints_matched": 14,
+  "old_shutdown_allowed_after_backup_verification": true,
+  "migration_objects": [
+    {
+      "name": "F_epoch500_results.tar",
+      "bytes": 1449123840,
+      "sha256": "283d49d889f344f946c71d3c01e054ed3b0bc0060aef08374ffa367a8396d8ec",
+      "remote": "oss://backup/stage2_20261022/migration_epoch500/F_epoch500_results.tar",
+      "upload_completed_utc": "2026-10-21T17:57:38.820386+00:00",
+      "verified_utc": "2026-10-21T18:00:08.523898+00:00"
+    },
+    {
+      "name": "CT701_preprocessed_exact.tar",
+      "bytes": 3365181440,
+      "sha256": "6c5cd590349dee5e8a17e18f03a3eef96efcf333a8832a434e19dac00226a792",
+      "remote": "oss://backup/stage2_20261022/migration_epoch500/CT701_preprocessed_exact.tar",
+      "upload_completed_utc": "2026-10-21T17:59:30.700567+00:00",
+      "verified_utc": "2026-10-21T18:01:05.732571+00:00"
+    },
+    {
+      "name": "migration_audit.tar",
+      "bytes": 1003520,
+      "sha256": "a1e8d3a80c0289996bd2c914557e5e0cc8e781e4d16bbd50131509cf0a320723",
+      "remote": "oss://backup/stage2_20261022/migration_epoch500/migration_audit.tar",
+      "upload_completed_utc": "2026-10-21T17:59:32.134219+00:00",
+      "verified_utc": "2026-10-21T18:01:07.407437+00:00"
+    }
+  ],
+  "new_oss_expiry_utc": "2026-10-22T18:06:55+00:00",
+  "startup_audit_roundtrip_passed": true,
+  "startup_audit_sha256": "dea06783b6787145f3d506ecbb8f10671d5fde89cd8fbe2ce56e185a0bf5a797"
+}
