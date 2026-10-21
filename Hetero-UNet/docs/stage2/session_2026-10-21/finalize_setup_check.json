@@ -1,0 +1,10 @@
+{
+  "checked_utc": "2026-10-21T08:00:00.051724+00:00",
+  "tests": 16,
+  "tests_passed": true,
+  "probe_bytes": 30720,
+  "roundtrip_sha256": "bce9a7a79af9931c78e10db98b172a6b4b9a96ef11ac0a8237fd37d316c93929",
+  "oss_roundtrip_passed": true,
+  "actual_shutdown_executed": false,
+  "training_queue_unchanged": true
+}

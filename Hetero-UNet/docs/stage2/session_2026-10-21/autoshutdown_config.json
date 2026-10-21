@@ -1,0 +1,32 @@
+{
+  "hostname": "I2bdb493e5700c01f4e",
+  "training_session": "stage2_main_20261021",
+  "training_commit": "9fe70ac570a0e14ebce30daa4a16a22e49b4f3fd",
+  "seed": 1234,
+  "epochs": 1000,
+  "queue_file": "/hy-tmp/stage2_audit_2026-10-21/main_queue.json",
+  "audit_dir": "/hy-tmp/stage2_audit_2026-10-21",
+  "source_repo": "/hy-tmp/Hetero-UNet-stage2",
+  "archive_dir": "/hy-tmp/stage2_autoshutdown_20261021",
+  "state_file": "/hy-tmp/stage2_autoshutdown_20261021/state.json",
+  "lock_file": "/hy-tmp/stage2_audit_2026-10-21/finalize.lock",
+  "cancel_file": "/hy-tmp/stage2_audit_2026-10-21/DISABLE_AUTOSHUTDOWN",
+  "oss_executable": "/usr/local/bin/oss",
+  "oss_config": "/root/.hycloud_ossutil_config",
+  "oss_prefix": "oss://backup/stage2_20261021/final_verified",
+  "shutdown_executable": "/usr/local/bin/shutdown",
+  "shutdown_sha256": "30b9ea6f23173078ccfe57d9b15ffe8caf5ba1442477f32c2c170ea0e97771d7",
+  "poll_seconds": 60,
+  "jobs": [
+    {
+      "model": "F",
+      "trainer": "nnUNetTrainerMambaUNetBlockAttnRes",
+      "results_dir": "/hy-tmp/stage2_results/stage2_F_seed1234/Dataset701_AbdomenCT/nnUNetTrainerMambaUNetBlockAttnRes__nnUNetPlans__3d_fullres"
+    },
+    {
+      "model": "C",
+      "trainer": "nnUNetTrainerMambaUNetBGBlockAttnRes",
+      "results_dir": "/hy-tmp/stage2_results/stage2_C_seed1234/Dataset701_AbdomenCT/nnUNetTrainerMambaUNetBGBlockAttnRes__nnUNetPlans__3d_fullres"
+    }
+  ]
+}
