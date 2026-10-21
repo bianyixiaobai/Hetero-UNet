@@ -101,6 +101,7 @@ def main(argv=None):
             trainer = trainer_class(deepcopy(plans), configuration, 'all',
                                     deepcopy(dataset), device=torch.device('cpu'))
             trainer.initialize()
+            assert Path(trainer.output_folder).resolve().is_relative_to(output / 'results')
             trainer.network.train()
             shape = trainer.configuration_manager.patch_size
             image = torch.randn(2, 1, *shape)

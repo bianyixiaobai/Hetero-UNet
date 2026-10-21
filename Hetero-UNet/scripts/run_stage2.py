@@ -165,16 +165,29 @@ def sha256_file(path):
     return value.hexdigest()
 
 
+def validate_results_location(results_root, output_folder):
+    """Fail before training if a path override was ignored by imported code."""
+    expected = Path(results_root).resolve()
+    actual = Path(output_folder).resolve()
+    if not actual.is_relative_to(expected):
+        raise ValueError(
+            f'Results isolation failed: trainer output {actual} is outside {expected}. '
+            'Check that nnunetv2.paths honors nnUNet_results before training.'
+        )
+
+
 def experiment_fingerprints(args, trainer, source_root):
     """Fingerprint named source files and descriptors, never credentials/images."""
     code = {"scripts/run_stage2.py": sha256_file(Path(__file__).resolve())}
     names = (
+        "paths.py", "configuration.py",
         "nets/MambaUNet.py", "nets/MambaUNetAttnRes.py",
         "nets/block_attention_residuals.py", "nets/boundary_prior.py",
         "training/loss/boundary.py",
         "training/loss/segmentation_boundary.py",
         "training/lr_scheduler/polylr.py",
         "training/nnUNetTrainer/nnUNetTrainerMambaUNet.py",
+        "training/nnUNetTrainer/nnUNetTrainer.py",
         "training/nnUNetTrainer/nnUNetTrainerMambaUNetAttnRes.py",
         "inference/predict_from_raw_data.py",
     )
@@ -281,6 +294,7 @@ def run_experiment(args):
         args.plans, args.use_compressed, device=torch.device(args.device),
     )
     frozen_protocol = validate_frozen_ct_protocol(args, trainer)
+    validate_results_location(args.effective_results_root, trainer.output_folder)
     folder = Path(trainer.output_folder)
     folder.mkdir(parents=True, exist_ok=True)
     if args.continue_training:

@@ -58,6 +58,7 @@ def main():
         trainer = trainer_class(deepcopy(plans), '3d_fullres', 'all',
                                 deepcopy(dataset), device=torch.device('cuda'))
         trainer.initialize()
+        assert Path(trainer.output_folder).resolve().is_relative_to(folder / 'results')
         patch = tuple(trainer.configuration_manager.patch_size)
         if trainer.batch_size != 2 or patch != (40, 224, 192):
             raise ValueError(f'Frozen CT footprint mismatch: batch={trainer.batch_size}, patch={patch}')

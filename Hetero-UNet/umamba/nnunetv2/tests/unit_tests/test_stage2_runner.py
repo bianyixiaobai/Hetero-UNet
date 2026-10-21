@@ -147,6 +147,14 @@ class TestStage2Parser(unittest.TestCase):
 
 
 class TestCheckpointAndRecordSafeguards(unittest.TestCase):
+    def test_resolved_results_folder_must_stay_inside_experiment_root(self):
+        root = Path.cwd() / 'stage2_F_seed1234'
+        runner.validate_results_location(root, root / 'Dataset701_CT' / 'Trainer' / 'fold_all')
+        with self.assertRaises(ValueError):
+            runner.validate_results_location(root, root.with_name('stage2_F_seed1234_smoke'))
+        with self.assertRaises(ValueError):
+            runner.validate_results_location(root, root.parent / 'unrelated_results')
+
     def test_resume_requires_existing_checkpoint_and_uses_upstream_precedence(self):
         with temporary_test_folder() as temporary:
             folder = Path(temporary)
