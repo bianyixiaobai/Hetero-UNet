@@ -1,5 +1,7 @@
 # 本次服务器运行归档
 
+> 19:46起改为只跑F、校验备份后关机；C暂缓。当前配置是`autoshutdown_F_only_config.json`，说明见[F-only记录](../F_ONLY_AUTOSHUTDOWN_2026-10-21.md)。原队列脚本和初始配置保留供追溯，不再用于启动C。
+
 这里保存2026-10-21实际使用的恢复、短程检查和后台队列脚本，以及小型验证报告。脚本面向这次新建的空实例，不应在已有正式结果或正在训练的预处理目录上直接重跑；文件存在检查会保护已有权重/描述文件。
 
 | 文件 | 用途 |
@@ -17,6 +19,11 @@
 | `archive_sha256.txt` | 下载的五份源归档校验值 |
 | `autoshutdown_config.json` | 本实例F/C完成门槛、OSS目标、取消标记与官方关机程序校验值；不含凭据 |
 | `finalize_setup_check.json` | 16项服务器测试及真实OSS探针上传/回读SHA256通过的记录；未执行真实关机 |
+| `autoshutdown_F_only_config.json` | 最新仅F目标、独立状态/锁/取消标记、C暂缓与新OSS备份目录 |
+| `F_only_control.json` | 切换时捕获的队列和F进程身份，用于避免误发信号 |
+| `F_only_queue_probe.json` | Linux独立模拟队列中，暂停队列不影响子任务且后续任务不启动 |
+| `F_only_auth_check.json` | 用户再次登录后检查到的新授权期限，仅元数据 |
+| `F_only_setup_check.json` | 24项测试、F持续推进、当前收尾等待F及OSS回读验证记录 |
 
 正式训练代码固定在`9fe70ac570a0e14ebce30daa4a16a22e49b4f3fd`，启动时服务器工作区干净。后续本目录归档与文档提交不改变该次训练使用的模型代码。具体协议见上级`EXPERIMENT_PROTOCOL_2026-10-21.json`。
 

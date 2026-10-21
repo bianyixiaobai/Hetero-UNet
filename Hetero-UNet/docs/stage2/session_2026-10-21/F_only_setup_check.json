@@ -1,0 +1,18 @@
+{
+  "checked_utc": "2026-10-21T11:50:57.053863+00:00",
+  "tests": 24,
+  "tests_passed": true,
+  "only_F_queued": true,
+  "C_deferred": true,
+  "queue_dispatcher_held": true,
+  "F_trainer_not_stopped": true,
+  "F_pid": 12995,
+  "queue_pid": 12992,
+  "oss_probe_bytes": 40960,
+  "oss_roundtrip_sha256": "58d20a441244384b73fdbeda24b633f5a198f593694ad72fe026c68fcb8b4cba",
+  "oss_roundtrip_passed": true,
+  "oss_expiry_utc": "2026-10-22T11:42:39+00:00",
+  "state": "waiting_for_F",
+  "training_source_unchanged": true,
+  "actual_shutdown_executed": false
+}

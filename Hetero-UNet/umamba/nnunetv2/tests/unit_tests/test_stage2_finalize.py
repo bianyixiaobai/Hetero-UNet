@@ -55,6 +55,19 @@ def fixture():
 
 
 class TestStage2Finalizer(unittest.TestCase):
+    def test_F_only_queue_can_finish_without_C(self):
+        with fixture() as (_, config, _, _):
+            config['jobs'] = config['jobs'][:1]
+            finalize.write_json(config['queue_file'], {'status': 'completed', 'sequence': ['F'],
+                                                     'seed': 1234, 'epochs_each': 1000})
+            self.assertTrue(finalize.readiness(config)[0])
+
+    def test_F_only_wait_state_does_not_wait_for_C(self):
+        with fixture() as (_, config, _, _):
+            config['jobs'] = config['jobs'][:1]
+            finalize.write_json(config['queue_file'], {'status': 'training'})
+            self.assertEqual(finalize.readiness(config), (False, 'waiting_for_F'))
+
     def test_waits_until_queue_completed(self):
         with fixture() as (_, config, _, _):
             finalize.write_json(config["queue_file"], {"status": "training"})

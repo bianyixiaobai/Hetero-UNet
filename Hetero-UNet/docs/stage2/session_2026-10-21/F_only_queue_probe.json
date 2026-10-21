@@ -1,0 +1,8 @@
+{
+  "probe_passed": true,
+  "held_parent_only": true,
+  "trainer_progressed_while_parent_held": true,
+  "next_task_never_started": true,
+  "controller_completed": true,
+  "real_training_signalled": false
+}

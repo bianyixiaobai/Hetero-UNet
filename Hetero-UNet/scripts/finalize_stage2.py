@@ -1,4 +1,4 @@
-"""Wait for this F/C queue, verify OSS backups, then optionally stop the instance.
+"""Wait for the configured queue, verify OSS backups, then stop if authorized.
 
 Separate from the trainer. Default invocation is a read-only readiness check.
 Only --watch --arm-shutdown permits the configured platform shutdown command.
@@ -82,12 +82,12 @@ def readiness(config):
     queue = read_json(config["queue_file"])
     if queue.get("status") == "failed":
         return False, "training_failed_requires_review"
-    if queue.get("status") != "completed":
-        return False, "waiting_for_F_and_C"
     names = [job["model"] for job in config["jobs"]]
+    if queue.get("status") != "completed":
+        return False, "waiting_for_" + "_and_".join(names)
     if (queue.get("sequence") != names or queue.get("seed") != config["seed"] or
             queue.get("epochs_each") != config["epochs"]):
-        raise RuntimeError("Completed queue does not match the frozen F/C protocol")
+        raise RuntimeError("Completed queue does not match the configured frozen protocol")
     if active_training(config):
         return False, "waiting_for_training_processes_to_exit"
     for job in config["jobs"]:
@@ -113,7 +113,7 @@ def readiness(config):
 
 
 def verify_checkpoints(config):
-    # Called only after both trainers and their queue have exited. CPU-only loads.
+    # Called only after the configured trainers and queue have exited. CPU-only loads.
     import torch
     reports = []
     for job in config["jobs"]:
@@ -257,7 +257,9 @@ class Finalizer:
             write_json(self.work / "backup_receipt.json", {
                 "created_utc": utc_now(), "training_commit": self.config["training_commit"],
                 "checkpoints": report, "objects": self.state["verified"],
-                "scope": "F/C seed1234 training complete; external 50-case evaluation remains separate",
+                "scope": ",".join(job["model"] for job in self.config["jobs"]) +
+                         " training complete; external 50-case evaluation remains separate",
+                "deferred_models": self.config.get("deferred_models", []),
                 "shutdown": "Authorized only after this receipt also passes round-trip verification",
             })
             with tarfile.open(receipt, "w") as archive:
