@@ -16,6 +16,6 @@ python -u /hy-tmp/Hetero-UNet-stage2/Hetero-UNet/scripts/check_stage2_cuda.py \
 tmux new-session -d -s stage2_C_20261022 \
   'exec bash /hy-tmp/stage2_C_audit_2026-10-22/run_C.sh >> /hy-tmp/stage2_C_audit_2026-10-22/C_queue.log 2>&1'
 while [ ! -f "$AUDIT/C_queue.json" ]; do sleep 1; done
-tmux new-session -d -s stage2_finalize_C_20261022 \
-  'exec python -u /hy-tmp/stage2_C_audit_2026-10-22/finalize_stage2.py --config /hy-tmp/stage2_C_audit_2026-10-22/autoshutdown_C_config.json --watch --arm-shutdown >> /hy-tmp/stage2_C_audit_2026-10-22/finalize_C.log 2>&1'
-echo C_AND_FINALIZER_STARTED
+tmux new-session -d -s stage2_backup_C_20261022 \
+  'exec python -u /hy-tmp/stage2_C_audit_2026-10-22/finalize_stage2.py --config /hy-tmp/stage2_C_audit_2026-10-22/C_backup_only_config.json --watch >> /hy-tmp/stage2_C_audit_2026-10-22/backup_C.log 2>&1'
+echo C_AND_BACKUP_ONLY_WATCHER_STARTED

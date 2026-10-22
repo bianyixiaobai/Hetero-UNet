@@ -1,0 +1,11 @@
+{
+  "status": "backup_only_policy_roundtrip_verified",
+  "checked_utc": "2026-10-22T15:41:36.093037+00:00",
+  "remote": "oss://backup/stage2_20261022/C_seed1234_verified/backup_only_policy_20261022.tar",
+  "bytes": 102400,
+  "sha256": "279d6acd373cbf5000ce1367e3c6bdda738865affc36649aa0de47cc163dc4f1",
+  "roundtrip_passed": true,
+  "shutdown_authorized": false,
+  "old_shutdown_watcher_cancelled": true,
+  "training_unaffected": true
+}

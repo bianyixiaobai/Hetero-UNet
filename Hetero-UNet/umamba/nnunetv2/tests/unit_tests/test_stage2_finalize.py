@@ -209,6 +209,28 @@ class TestStage2Finalizer(unittest.TestCase):
                 worker.finish()
                 command.assert_not_called()
                 self.assertEqual(worker.state["status"], "verified_not_armed")
+                receipt = finalize.read_json(worker.work / "backup_receipt.json")
+                self.assertFalse(receipt["shutdown_authorized"])
+                self.assertIn("Not authorized", receipt["shutdown"])
+
+    def test_explicit_backup_only_policy_rejects_arming(self):
+        with fixture() as (_, config, path, _):
+            config["shutdown_authorized"] = False
+            finalize.write_json(path, config)
+            with self.assertRaisesRegex(RuntimeError, "explicitly disabled"):
+                finalize.Finalizer(config, path, True)
+
+    def test_backup_only_does_not_require_a_shutdown_binary(self):
+        with fixture() as (folder, config, path, _):
+            Path(config["shutdown_executable"]).unlink()
+            worker = finalize.Finalizer(config, path, False)
+            with patch.object(finalize, "verify_checkpoints", return_value=[]), \
+                    patch.object(worker, "archive_job", return_value=folder / "model.tar"), \
+                    patch.object(worker, "archive_audit", return_value=folder / "audit.tar"), \
+                    patch.object(worker, "upload_verify"), patch.object(finalize.subprocess, "run") as command:
+                worker.finish()
+                command.assert_not_called()
+                self.assertEqual(worker.state["status"], "verified_not_armed")
 
     def test_changed_config_rejects_saved_proofs(self):
         with fixture() as (_, config, path, _):

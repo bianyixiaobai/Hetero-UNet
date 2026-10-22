@@ -4,7 +4,9 @@
   "training_commit": "9fe70ac570a0e14ebce30daa4a16a22e49b4f3fd",
   "seed": 1234,
   "epochs": 1000,
-  "deferred_models": ["F-aux"],
+  "deferred_models": [
+    "F-aux"
+  ],
   "queue_file": "/hy-tmp/stage2_C_audit_2026-10-22/C_queue.json",
   "audit_dir": "/hy-tmp/stage2_C_audit_2026-10-22",
   "source_repo": "/hy-tmp/Hetero-UNet-stage2",
@@ -18,9 +20,13 @@
   "shutdown_executable": "/usr/local/bin/shutdown",
   "shutdown_sha256": "30b9ea6f23173078ccfe57d9b15ffe8caf5ba1442477f32c2c170ea0e97771d7",
   "poll_seconds": 60,
-  "jobs": [{
-    "model": "C",
-    "trainer": "nnUNetTrainerMambaUNetBGBlockAttnRes",
-    "results_dir": "/hy-tmp/stage2_results/stage2_C_seed1234/Dataset701_AbdomenCT/nnUNetTrainerMambaUNetBGBlockAttnRes__nnUNetPlans__3d_fullres"
-  }]
+  "jobs": [
+    {
+      "model": "C",
+      "trainer": "nnUNetTrainerMambaUNetBGBlockAttnRes",
+      "results_dir": "/hy-tmp/stage2_results/stage2_C_seed1234/Dataset701_AbdomenCT/nnUNetTrainerMambaUNetBGBlockAttnRes__nnUNetPlans__3d_fullres"
+    }
+  ],
+  "shutdown_authorized": false,
+  "policy_note": "Revoked by user; use C_backup_only_config.json and --watch without --arm-shutdown"
 }

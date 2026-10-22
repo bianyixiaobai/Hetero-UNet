@@ -2,6 +2,8 @@
 
 详情见[C组训练记录](../C_TRAINING_2026-10-22.md)。此处为启动时快照，训练完成以服务器最终manifest及OSS最终收据为准。
 
+**用户已撤销自动关机**：当前仅备份、校验并保持实例运行。初始manifest与启动收据保留原始时间点事实，现行权限见`backup_only_policy_check.json`。
+
 | 文件 | 内容 |
 |---|---|
 | `preflight.json` | 原预处理253文件、14项代码、plans、环境、GPU与C从头初始化检查 |
@@ -12,6 +14,9 @@
 | `startup_backup_receipt.json` | 启动审计上传、下载回读的大小及SHA256凭据；不是最终训练权重 |
 | `run_C.sh` | 仅C、seed1234、1000轮，从头训练与队列状态记录 |
 | `prepare_and_start_C.sh` | 文件及CUDA检查通过后才启动训练和独立收尾 |
-| `autoshutdown_C_config.json` | 只等待C，上传回读校验通过后关机的配置 |
+| `autoshutdown_C_config.json` | 旧配置，关机权限已显式撤销，旧会话已取消 |
+| `C_backup_only_config.json` | 当前配置：只上传、校验，`shutdown_authorized=false` |
+| `backup_only_policy_check.json` | 原关机会话退出、旧阻断保留、新备份进程参数无关机授权，C持续训练的复核 |
+| `backup_only_policy_receipt.json` | 用户变更后的最新程序、配置、文档及撤销证据OSS回读证明 |
 
 私有OSS诊断日志、完整pip环境清单留在实例和个人OSS中；不把账户配置、密码或大权重提交Git。模型代码固定9fe70ac，后续提交仅记录运维脚本与文档，不在训练过程中切换源码。

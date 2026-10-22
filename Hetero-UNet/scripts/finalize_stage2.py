@@ -137,6 +137,8 @@ def verify_checkpoints(config):
 
 class Finalizer:
     def __init__(self, config, config_path, armed=False):
+        if armed and config.get("shutdown_authorized") is False:
+            raise RuntimeError("Shutdown explicitly disabled by backup-only configuration")
         self.config = config
         self.config_path = Path(config_path)
         self.armed = armed
@@ -150,6 +152,7 @@ class Finalizer:
         if self.state.get("config_sha256", digest) != digest:
             raise RuntimeError("Watcher configuration changed; review the existing backup state")
         self.state["config_sha256"] = digest
+        self.state["shutdown_authorized"] = self.armed
 
     def save(self, status, **details):
         previous = self.state.get("status")
@@ -260,18 +263,20 @@ class Finalizer:
                 "scope": ",".join(job["model"] for job in self.config["jobs"]) +
                          " training complete; external 50-case evaluation remains separate",
                 "deferred_models": self.config.get("deferred_models", []),
-                "shutdown": "Authorized only after this receipt also passes round-trip verification",
+                "shutdown_authorized": self.armed,
+                "shutdown": ("Authorized only after this receipt also passes round-trip verification"
+                             if self.armed else "Not authorized; upload and verify only; keep instance running"),
             })
             with tarfile.open(receipt, "w") as archive:
                 archive.add(self.work / "backup_receipt.json", arcname="backup_receipt.json")
         self.upload_verify(receipt)
         self.safe_to_continue()
+        if not self.armed:
+            self.save("verified_not_armed", note="Backup verified; shutdown not authorized; instance remains running")
+            return
         executable = Path(self.config["shutdown_executable"])
         if sha256(executable) != self.config["shutdown_sha256"]:
             raise RuntimeError("Platform shutdown executable changed; refusing invocation")
-        if not self.armed:
-            self.save("verified_not_armed")
-            return
         self.save("shutdown_requested", shutdown_command=str(executable))
         # Recheck the cancellation file and active queue immediately before invocation.
         self.safe_to_continue()
