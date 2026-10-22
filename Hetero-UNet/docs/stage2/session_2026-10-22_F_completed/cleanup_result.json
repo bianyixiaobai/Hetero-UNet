@@ -1,0 +1,58 @@
+{
+  "status": "completed_verified_cleanup",
+  "completed_utc": "2026-10-22T13:32:05.850137+00:00",
+  "files_deleted": 19,
+  "bytes_deleted": 18443695513,
+  "disk_before": {
+    "total": 53687091200,
+    "used": 36671680512,
+    "free": 17015410688
+  },
+  "disk_after": {
+    "total": 53687091200,
+    "used": 19678945280,
+    "free": 34008145920
+  },
+  "OSS_objects_freshly_verified": 19,
+  "historical_files_verified_before_cleanup": 1091,
+  "F_epoch": 1000,
+  "live_F_checkpoints_retained": [
+    {
+      "name": "checkpoint_best.pth",
+      "epoch": 1000,
+      "bytes": 724607360,
+      "sha256": "aba947cc254f54b9c67f81bdfae2018ac3e99e79bc729082b3e83e5c4b89cc08",
+      "network_finite": true
+    },
+    {
+      "name": "checkpoint_final.pth",
+      "epoch": 1000,
+      "bytes": 724608382,
+      "sha256": "ab6a08e614cc2627ef5352531b5c4a56e55b4c3a0149b176f45185bfd29222ad",
+      "network_finite": true
+    }
+  ],
+  "protected": [
+    "current F best/final",
+    "raw CT",
+    "preprocessing and NPY cache",
+    "A baseline",
+    "active source",
+    "all logs/configuration/predictions and private root records"
+  ],
+  "predelete_evidence": {
+    "remote": "oss://backup/stage2_20261022/F_completed_cleanup/before_deletion_evidence.tar",
+    "bytes": 51200,
+    "sha256": "5f2ee4ee95c7a0bac8041a3234ba4e295bc213d17776f05057b80df9224df994",
+    "roundtrip_passed": true
+  },
+  "external_50_evaluation_performed": false,
+  "C_training_started": false,
+  "shutdown_called": false,
+  "cleanup_receipt": {
+    "remote": "oss://backup/stage2_20261022/F_completed_cleanup/cleanup_result.tar",
+    "bytes": 51200,
+    "sha256": "920801e1e22e877607d756e03fde79b39ee5cb697d49afc75f86f07ec002cd03",
+    "roundtrip_passed": true
+  }
+}

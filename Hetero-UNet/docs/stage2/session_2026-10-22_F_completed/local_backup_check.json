@@ -1,0 +1,10 @@
+{
+  "status": "local_F_completed_backup_verified",
+  "checked_utc": "2026-10-22T13:38:08.8463784Z",
+  "F_package": "output/stage2_F_completed_2026-10-22/F_seed1234_final.tar",
+  "bytes": 1450741760,
+  "sha256": "9d9b5c540072152c9cc36f227ebeeca00b2a827c6fa488c4354dd48850a41fc8",
+  "final_audit": "output/stage2_F_completed_2026-10-22/final_audit.tar",
+  "final_audit_sha256": "b9a2d35357919419029ae5b24e4b377fab5278b916061a34e225dbcb4deb2c74",
+  "SHA256_checks_passed": true
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "checkpoint_best.pth",
+    "epoch": 1000,
+    "bytes": 724607360,
+    "sha256": "aba947cc254f54b9c67f81bdfae2018ac3e99e79bc729082b3e83e5c4b89cc08",
+    "network_finite": true
+  },
+  {
+    "name": "checkpoint_final.pth",
+    "epoch": 1000,
+    "bytes": 724608382,
+    "sha256": "ab6a08e614cc2627ef5352531b5c4a56e55b4c3a0149b176f45185bfd29222ad",
+    "network_finite": true
+  }
+]

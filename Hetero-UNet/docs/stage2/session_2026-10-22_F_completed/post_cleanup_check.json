@@ -1,0 +1,34 @@
+{
+  "status": "passed_after_cleanup",
+  "checked_utc": "2026-10-22T13:36:13.557856+00:00",
+  "raw_counts": {
+    "imagesTr": 50,
+    "labelsTr": 50,
+    "imagesVal": 50,
+    "labelsVal": 50
+  },
+  "preprocessed_counts": {
+    "npz": 50,
+    "pkl": 50,
+    "npy": 100
+  },
+  "A_checkpoints_retained": [
+    "/hy-tmp/Hetero-UNet/data/nnUNet_results/Dataset701_AbdomenCT/nnUNetTrainerMambaUNet__nnUNetPlans__3d_fullres/fold_all/checkpoint_best.pth",
+    "/hy-tmp/Hetero-UNet/data/nnUNet_results/Dataset701_AbdomenCT/nnUNetTrainerMambaUNet__nnUNetPlans__3d_fullres/fold_all/checkpoint_final.pth"
+  ],
+  "F_best_final_retained_and_SHA_matched": true,
+  "active_model_source_fingerprints_matched": 14,
+  "tracked_source_unchanged": true,
+  "disk": {
+    "total": 53687091200,
+    "used": 18228252672,
+    "free": 35458838528
+  },
+  "C_formal_training_started": false,
+  "external_50_evaluation_performed": false,
+  "deleted_files": 19,
+  "deleted_bytes": 18443695513,
+  "current_F_result_dir": "/hy-tmp/stage2_results/stage2_F_seed1234/Dataset701_AbdomenCT/nnUNetTrainerMambaUNetBlockAttnRes__nnUNetPlans__3d_fullres/fold_all",
+  "current_source_dir": "/hy-tmp/Hetero-UNet-stage2",
+  "note": "disk space may increase after an already-open SFTP download handle closes"
+}
