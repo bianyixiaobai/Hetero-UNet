@@ -1,0 +1,73 @@
+{
+  "scope": "real CUDA/AMP and original CT plan, synthetic batches only",
+  "not_tested": [
+    "real data loader",
+    "training convergence",
+    "DSC/NSD"
+  ],
+  "torch": "2.2.1+cu121",
+  "cuda": "12.1",
+  "gpu": "Tesla V100-SXM2-32GB",
+  "gpu_memory_bytes": 34072559616,
+  "runs": [
+    {
+      "model": "F",
+      "status": "passed",
+      "physical_batch": 2,
+      "patch": [
+        40,
+        224,
+        192
+      ],
+      "train_loss": 3.8587629795074463,
+      "validation_loss": 3.834857940673828,
+      "train_step_seconds": 1.5770916528999805,
+      "peak_train_allocated_bytes": 9430758912,
+      "peak_train_reserved_bytes": 11710496768,
+      "parameters": 90378406,
+      "amp": true,
+      "mamba": "real_mamba_ssm",
+      "seed": 1234
+    },
+    {
+      "model": "C",
+      "status": "passed",
+      "physical_batch": 2,
+      "patch": [
+        40,
+        224,
+        192
+      ],
+      "train_loss": 3.9865403175354004,
+      "validation_loss": 3.8408663272857666,
+      "train_step_seconds": 0.7052862122654915,
+      "peak_train_allocated_bytes": 9728045568,
+      "peak_train_reserved_bytes": 12046041088,
+      "parameters": 90386943,
+      "amp": true,
+      "mamba": "real_mamba_ssm",
+      "seed": 1234,
+      "boundary_loss": 1.2516577243804932
+    },
+    {
+      "model": "F-aux",
+      "status": "passed",
+      "physical_batch": 2,
+      "patch": [
+        40,
+        224,
+        192
+      ],
+      "train_loss": 3.986539840698242,
+      "validation_loss": 3.8408687114715576,
+      "train_step_seconds": 0.5819045901298523,
+      "peak_train_allocated_bytes": 9721111040,
+      "peak_train_reserved_bytes": 11997806592,
+      "parameters": 90385343,
+      "amp": true,
+      "mamba": "real_mamba_ssm",
+      "seed": 1234,
+      "boundary_loss": 1.2516577243804932
+    }
+  ]
+}

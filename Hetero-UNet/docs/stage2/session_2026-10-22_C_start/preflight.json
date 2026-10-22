@@ -1,0 +1,51 @@
+{
+  "status": "passed",
+  "checked_utc": "2026-10-22T15:22:48.925998+00:00",
+  "hostname": "I2bde78031f00701d9e",
+  "source_commit": "9fe70ac570a0e14ebce30daa4a16a22e49b4f3fd",
+  "source_clean": true,
+  "source_fingerprints_matched": 14,
+  "preprocessed_files_SHA_matched": 253,
+  "preprocessed_bytes_SHA_matched": 10376522705,
+  "data_counts": {
+    "npz": 50,
+    "pkl": 50,
+    "npy": 100
+  },
+  "raw_counts": {
+    "imagesTr": 50,
+    "labelsTr": 50,
+    "imagesVal": 50,
+    "labelsVal": 50
+  },
+  "plans_sha256": "de3ab2e210dab22a51221a8a02512e3524b1479c1395c40a526c92d3076e456f",
+  "previous_F_completed": true,
+  "start_from_scratch": true,
+  "checkpoint_inherited_from_F": false,
+  "python": "3.11.8 (main, Feb 25 2024, 16:41:26) [GCC 9.4.0]",
+  "torch": "2.2.1+cu121",
+  "CUDA": "12.1",
+  "gpu": "Tesla V100-SXM2-32GB",
+  "gpu_memory_bytes": 34072559616,
+  "mamba_ssm": "2.2.2",
+  "causal_conv1d": "1.2.0.post2",
+  "physical_batch": 2,
+  "patch": [
+    40,
+    224,
+    192
+  ],
+  "epochs": 1000,
+  "seed": 1234,
+  "boundary_loss_weight": 0.1,
+  "group_size": 3,
+  "boundary_hidden_channels": 8,
+  "MHA_batch_first": false,
+  "disk": {
+    "total": 53687091200,
+    "used": 18229301248,
+    "free": 35457789952
+  },
+  "OSS_expiry_utc": "2026-10-23T12:45:33+00:00",
+  "external_50_evaluation_performed": false
+}

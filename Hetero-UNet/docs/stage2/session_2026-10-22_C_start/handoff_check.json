@@ -1,0 +1,17 @@
+{
+  "status": "training_healthy",
+  "checked_utc": "2026-10-22T15:31:12.558350+00:00",
+  "current_epoch_zero_based": 3,
+  "completed_epochs": 3,
+  "epoch_seconds": [
+    150.46,
+    145.76,
+    145.45
+  ],
+  "latest_train_loss": 0.5865,
+  "latest_val_loss": 0.4834,
+  "finalizer_status": "waiting_for_C",
+  "OSS_expiry_utc": "2026-10-23T15:29:08+00:00",
+  "OSS_refresh_needed_before_expected_finish": true,
+  "GPU": "Tesla V100-SXM2-32GB, 11902 MiB, 100 %"
+}

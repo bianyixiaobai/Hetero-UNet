@@ -1,0 +1,45 @@
+{
+  "status": "formal_C_training_verified",
+  "checked_utc": "2026-10-22T15:27:49.643485+00:00",
+  "started_beijing": "2026-10-22T23:23:17.702350+08:00",
+  "run_id": "20261022T152315.040085Z_1ad47600",
+  "source_commit": "9fe70ac570a0e14ebce30daa4a16a22e49b4f3fd",
+  "source_clean": true,
+  "current_epoch_zero_based": 1,
+  "epochs_completed": 1,
+  "epoch_compute_seconds": [
+    150.46
+  ],
+  "mean_epoch_plus_overhead_estimate_seconds": 152.46,
+  "estimated_finish_beijing": "2026-10-24T17:46:17.183485+08:00",
+  "ETA_note": "early estimate based on first epoch(s); later throughput and checkpoint overhead may vary",
+  "first_train_loss": 1.0417,
+  "first_val_loss": 0.6631,
+  "first_segmentation_loss": 0.9229755997657776,
+  "first_boundary_unweighted": 1.1875709295272827,
+  "boundary_loss_weight": 0.1,
+  "loss_components_match_total": true,
+  "GPU": "Tesla V100-SXM2-32GB, 11902 MiB, 100 %",
+  "training_session_active": true,
+  "finalizer_session_active": true,
+  "finalizer_status": "waiting_for_C",
+  "OSS_expiry_utc": "2026-10-23T12:45:33+00:00",
+  "OSS_refresh_needed_before_expected_finish": true,
+  "physical_batch": 2,
+  "patch": [
+    40,
+    224,
+    192
+  ],
+  "seed": 1234,
+  "epochs": 1000,
+  "fresh_initialization": true,
+  "MHA_batch_first": false,
+  "finalizer_safety_tests_passed": 18,
+  "disk": {
+    "total": 53687091200,
+    "used": 18953269248,
+    "free": 34733821952
+  },
+  "external_50_evaluation_performed": false
+}

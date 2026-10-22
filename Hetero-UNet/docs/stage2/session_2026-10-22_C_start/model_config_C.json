@@ -1,0 +1,19 @@
+{
+  "trainer": "nnUNetTrainerMambaUNetBGBlockAttnRes",
+  "group_size": 3,
+  "grouping_unit": "complete_TransMamba_layer",
+  "boundary_guidance": true,
+  "auxiliary_boundary": true,
+  "boundary_hidden_channels": 8,
+  "boundary_loss_weight": 0.1,
+  "boundary_target": "two_sided_4_or_6_connected_semantic_label_interfaces",
+  "mha_batch_first": false,
+  "epochs": 1000,
+  "batch_size": 2,
+  "patch_size": [
+    40,
+    224,
+    192
+  ],
+  "torch_compile": false
+}

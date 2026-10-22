@@ -1,0 +1,10 @@
+{
+  "status": "C_startup_audit_roundtrip_verified",
+  "checked_utc": "2026-10-22T15:32:28.678066+00:00",
+  "remote": "oss://backup/stage2_20261022/C_seed1234_verified/startup_audit.tar",
+  "bytes": 1341440,
+  "sha256": "456eb1e4f87c24a78ad72da54c8ca0a9c9fa5af41435f826c9505023ae5a01ee",
+  "roundtrip_passed": true,
+  "training_source_commit": "9fe70ac570a0e14ebce30daa4a16a22e49b4f3fd",
+  "scope": "C startup code/protocol/environment/first epochs only; final training weights not yet produced"
+}
