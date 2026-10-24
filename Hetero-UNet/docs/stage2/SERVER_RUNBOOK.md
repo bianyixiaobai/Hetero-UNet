@@ -92,6 +92,8 @@ python scripts/run_stage2.py --model F-aux --seed 1234 --results-root /hy-tmp/st
 
 ## 6. 外部50例统一推理与评价
 
+**2026-10-24执行更新**：F/C均已完训，并在独立`/hy-tmp/stage2_eval_20261024/`启动评价队列，协议、日志与归档详见[F/C评价记录](F_C_EVALUATION_2026-10-24.md)。以下手动命令供参考；不要与正在运行的后台队列重复启动。
+
 训练完成后，先设置实际外部图像和GT路径（不要把训练imagesTr作为外部测试集）：
 
 ```bash
@@ -107,7 +109,7 @@ nnUNetv2_predict -i "$CT50_IMAGES" -o "$STAGE2_EVAL/C_seed1234" -d 701 -c 3d_ful
 
 必须同时匹配Trainer和结果根目录。F-aux使用`stage2_F-aux_seed1234`及`nnUNetTrainerMambaUNetBlockAttnResBoundarySupervision`。推理器现在遵守fold/checkpoint参数；不再偷偷改成固定best，因此本手册显式传`-f all -chk checkpoint_best.pth`。保持相同滑窗设置（默认step_size=0.5）与无TTA；不要不同组单独调整推理协议。
 
-大病例如0050仍可能需要原低内存导出补丁；它只在OSS，本次未恢复或验证。先取回并比较补丁目标文件与新目录，只迁移导出改动，记录补丁哈希，对A/F/C统一应用和评价；不要用旧完整项目覆盖新模块。若导出未完成，不把残缺病例列表直接求均值当作50例结果。
+原低内存导出补丁已于10月21日从OSS恢复，位置为`/hy-tmp/stage2_audit_2026-10-21/pred50_artifacts/backup50/export_prediction_lowmem_patch.py.bak`。10月24日已核对AST确认只改变重采样转换函数，并在FP16/FP32及两种spacing的4组检查中得到逐元素相同的分割和概率。当前队列在独立runtime中对F/C统一使用该补丁，不覆盖训练仓库；A使用补丁处理0050的既有记录保留。若导出未完成，不把残缺病例列表直接求均值当作50例结果。
 
 使用同一评价脚本、13器官顺序和NSD容差，例：
 

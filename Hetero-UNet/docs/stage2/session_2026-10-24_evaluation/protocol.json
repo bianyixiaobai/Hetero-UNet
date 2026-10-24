@@ -1,0 +1,452 @@
+{
+  "status": "ready",
+  "created_utc": "2026-10-24T09:14:55.026079+00:00",
+  "sequence": [
+    "F",
+    "C"
+  ],
+  "models": {
+    "F": {
+      "trainer": "nnUNetTrainerMambaUNetBlockAttnRes",
+      "model_folder": "/hy-tmp/stage2_results/stage2_F_seed1234/Dataset701_AbdomenCT/nnUNetTrainerMambaUNetBlockAttnRes__nnUNetPlans__3d_fullres",
+      "checkpoint": "/hy-tmp/stage2_results/stage2_F_seed1234/Dataset701_AbdomenCT/nnUNetTrainerMambaUNetBlockAttnRes__nnUNetPlans__3d_fullres/fold_all/checkpoint_best.pth",
+      "checkpoint_sha256": "aba947cc254f54b9c67f81bdfae2018ac3e99e79bc729082b3e83e5c4b89cc08",
+      "run_id": "20261021T180450.922926Z_943ff048",
+      "source_commit": "9fe70ac570a0e14ebce30daa4a16a22e49b4f3fd",
+      "plans_sha256": "de3ab2e210dab22a51221a8a02512e3524b1479c1395c40a526c92d3076e456f",
+      "dataset_sha256": "2af311aa621df317427ce2a443a2ba78f1869449ebefc5a3be8ecca50e4228b2"
+    },
+    "C": {
+      "trainer": "nnUNetTrainerMambaUNetBGBlockAttnRes",
+      "model_folder": "/hy-tmp/stage2_results/stage2_C_seed1234/Dataset701_AbdomenCT/nnUNetTrainerMambaUNetBGBlockAttnRes__nnUNetPlans__3d_fullres",
+      "checkpoint": "/hy-tmp/stage2_results/stage2_C_seed1234/Dataset701_AbdomenCT/nnUNetTrainerMambaUNetBGBlockAttnRes__nnUNetPlans__3d_fullres/fold_all/checkpoint_best.pth",
+      "checkpoint_sha256": "675dec5bba1bb46b5fbc611676dc710a377350357ba40579816dbbf15fc22a71",
+      "run_id": "20261022T152315.040085Z_1ad47600",
+      "source_commit": "9fe70ac570a0e14ebce30daa4a16a22e49b4f3fd",
+      "plans_sha256": "de3ab2e210dab22a51221a8a02512e3524b1479c1395c40a526c92d3076e456f",
+      "dataset_sha256": "2af311aa621df317427ce2a443a2ba78f1869449ebefc5a3be8ecca50e4228b2"
+    }
+  },
+  "cases": [
+    {
+      "id": "FLARETs_0001",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0001_0000.nii.gz",
+      "image_sha256": "8f0397392b5747882048fa0b71d2daf83c1007f4ef3b03c8d9981126c6f6ae17",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0001.nii.gz",
+      "gt_sha256": "ead937dbfe230fe5341867d4473351a401bd6ae0be9a8909ad40ef8158ca60da"
+    },
+    {
+      "id": "FLARETs_0002",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0002_0000.nii.gz",
+      "image_sha256": "49f14c3d35f20d38f8cc631ecb21a798f1de66cbe33f472e341c4c1527ce1cfe",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0002.nii.gz",
+      "gt_sha256": "a555d033961cc2c2b7d81293c5041619f5b295f40b370a459126014569462a8b"
+    },
+    {
+      "id": "FLARETs_0003",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0003_0000.nii.gz",
+      "image_sha256": "6aab2a9258ea78786ede1d38ec056324d83ad93048fa20fc0e0a0ad85f36202a",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0003.nii.gz",
+      "gt_sha256": "bbd5a5f74bbcc2da35e93991874801a56c31d181495c5b2246092259bae849d6"
+    },
+    {
+      "id": "FLARETs_0004",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0004_0000.nii.gz",
+      "image_sha256": "be7a22f5c52bb9a6612aa089019bc315d4e70531de32ebf419c8b2eb5deca75a",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0004.nii.gz",
+      "gt_sha256": "b50d42abb35a93d1f5868f8501b4440ff5e13251b04076fd53eeef531528a02f"
+    },
+    {
+      "id": "FLARETs_0005",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0005_0000.nii.gz",
+      "image_sha256": "9353b2bea911c283d0486a01132b9b10a1dfe7b2fefa68e5cf0d2914fe4da562",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0005.nii.gz",
+      "gt_sha256": "3bf5d1f44cb9df04554da2c948b3d639fb6de9b1cde5a3e420edb561f46ec2a2"
+    },
+    {
+      "id": "FLARETs_0006",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0006_0000.nii.gz",
+      "image_sha256": "e9fa051882d13d9c145eb4ac85825b89213c0649173ec15b6dd831e56d2d6ead",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0006.nii.gz",
+      "gt_sha256": "ce7d3aba0c74c07d7fd84a184ed8a7f473f2cd1821a5a57a9788b5e7d892f2ad"
+    },
+    {
+      "id": "FLARETs_0007",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0007_0000.nii.gz",
+      "image_sha256": "72231e9e00fd140d4e2d1bffba059a6aa4255d5f087d8623ce4ab22c4d985a35",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0007.nii.gz",
+      "gt_sha256": "a6961004de9f1cfa1840e2084e3a1668fdc38a1a7a57c75577e17da400e6e442"
+    },
+    {
+      "id": "FLARETs_0008",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0008_0000.nii.gz",
+      "image_sha256": "de447ace491a30bf61838902f8dabfe234819addeb02f511c05c378cc18957aa",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0008.nii.gz",
+      "gt_sha256": "91f38088cd66d358b3e8c04b38b62d034f95d94ecbf8eba1a6cab8590d58743b"
+    },
+    {
+      "id": "FLARETs_0009",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0009_0000.nii.gz",
+      "image_sha256": "7c2b65ee6bba503ae367594096a429057bf0501e1969ff9aa1dba00c51f2f97a",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0009.nii.gz",
+      "gt_sha256": "6dffea8081bfcfb2db4931bb6502d3a765866ada27661131bf41e9fef116c08f"
+    },
+    {
+      "id": "FLARETs_0010",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0010_0000.nii.gz",
+      "image_sha256": "5f763cceebfa1469d083c583275f6327608afe81216cb2dd56c28b94dd708561",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0010.nii.gz",
+      "gt_sha256": "452552afb3d2e10ec8fd5f919df2f14a6ec26de1db053c7a4fc9e3da83445a32"
+    },
+    {
+      "id": "FLARETs_0011",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0011_0000.nii.gz",
+      "image_sha256": "43b2901ac125394e1851d9cd5d7149a2b8db650b091b14c2224ba97b1558672b",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0011.nii.gz",
+      "gt_sha256": "e5c61d0fbe9b3eb6bd4dff2b7b42e676e9d696f44b87f1ed875a0226001e931d"
+    },
+    {
+      "id": "FLARETs_0012",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0012_0000.nii.gz",
+      "image_sha256": "d7667229ad732ffe76a94967f896be6494b3bc86e8c01bad93f77b51c619f6af",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0012.nii.gz",
+      "gt_sha256": "90eb0e5dc60e6f9d3eae53a478aba07803e5feaf0e42cc26ae3dd3c4d271c5d4"
+    },
+    {
+      "id": "FLARETs_0013",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0013_0000.nii.gz",
+      "image_sha256": "7771110dcf71444c6efe3c86227b88085410a81375b2bd5b43629da8c159c46f",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0013.nii.gz",
+      "gt_sha256": "ebaa109c91508df6e8cfd31dee38fda6d8a283bab369d2b5212f8d248b08f39f"
+    },
+    {
+      "id": "FLARETs_0014",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0014_0000.nii.gz",
+      "image_sha256": "de7145e288d61cf1ef60725a11a7f7a84b1ed02a8f85616c93f0df91e6eb7689",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0014.nii.gz",
+      "gt_sha256": "6d008168239f94a6e14747921c3d5121ce7c0158cd641e746de59d8b38020911"
+    },
+    {
+      "id": "FLARETs_0015",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0015_0000.nii.gz",
+      "image_sha256": "139277bc03e9afb114de8ee6da1f04c96a98be1e458bdb5f3b25958c161df82d",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0015.nii.gz",
+      "gt_sha256": "eb7e0754d3a42572aff2eeeafe4bdd5cc503a60288d912e8d3a3bd7022e72d2f"
+    },
+    {
+      "id": "FLARETs_0016",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0016_0000.nii.gz",
+      "image_sha256": "2e826efd16bf473c3f259d4e8a3342fd3f0044a52527563ca9d321ce6904493b",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0016.nii.gz",
+      "gt_sha256": "cd0df1e481c3f032f8cab2266e513992ec82eec693419d7bbb2b73aaac3f15e7"
+    },
+    {
+      "id": "FLARETs_0017",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0017_0000.nii.gz",
+      "image_sha256": "a6a4005371eb0b0eb1915adc285525b9c5fc32ac9aa2632775b6f0e14a806275",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0017.nii.gz",
+      "gt_sha256": "9f4b7b68c3ac6305837429acc67f052fb69218fc335f224566679b5f697cec99"
+    },
+    {
+      "id": "FLARETs_0018",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0018_0000.nii.gz",
+      "image_sha256": "2d4d977b0ed097a7cffdebdfe80efcaad5172f5d64db76806ff26e4148c9d506",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0018.nii.gz",
+      "gt_sha256": "b707caea7bbfae407bb035e15938a8057381b7baf4ef11c16f2bfb50806c842b"
+    },
+    {
+      "id": "FLARETs_0019",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0019_0000.nii.gz",
+      "image_sha256": "c6a5163dcb6c2967087ffdd590806610112f0afcaa2861b7582a09791c8875a0",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0019.nii.gz",
+      "gt_sha256": "f1001a956aae4248faf40479284928f284b025b8d793a76bb7e883bb3e0ed1d8"
+    },
+    {
+      "id": "FLARETs_0020",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0020_0000.nii.gz",
+      "image_sha256": "860e1accd44e7e365fe011138294f15bd47c8f91314a102b512e9aaf21a9e761",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0020.nii.gz",
+      "gt_sha256": "95f1d7d8352fc3828362a034611bb13da74f6b952041a9ebeebc2352c13fd651"
+    },
+    {
+      "id": "FLARETs_0021",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0021_0000.nii.gz",
+      "image_sha256": "c62615c08ff893f71459f10a9abb9c71953c7ce306d8c68c09cb804f975f8e2b",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0021.nii.gz",
+      "gt_sha256": "ba66fff67894145ffa21c0c3321bc697cd9059246cae0414350b0a925c5e7775"
+    },
+    {
+      "id": "FLARETs_0022",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0022_0000.nii.gz",
+      "image_sha256": "4fc7fbb5c934a6b2c63220d165a9d07c912ca3807553c37e4066ea6da6ccfb27",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0022.nii.gz",
+      "gt_sha256": "c72b0f2184c55ff9e90497e33413f06766e6c25495cc8c806c02ccd1a62e8149"
+    },
+    {
+      "id": "FLARETs_0023",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0023_0000.nii.gz",
+      "image_sha256": "9eefd1e8f259e5e2763046b34fe79717b7b68c65127200b56ae0c10d2686ee6d",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0023.nii.gz",
+      "gt_sha256": "9a759df19b1b63b1fc3dc47e511b44b85e8948972a6349f07b1ce2ef42d60408"
+    },
+    {
+      "id": "FLARETs_0024",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0024_0000.nii.gz",
+      "image_sha256": "5765c2260515bb65b43decb815d25a6d35bcdce94f96acc9eddeec78844cda7f",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0024.nii.gz",
+      "gt_sha256": "7c6d8443a871652a93e5576d527643fb08d741500ba523eaf73a80f21e799589"
+    },
+    {
+      "id": "FLARETs_0025",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0025_0000.nii.gz",
+      "image_sha256": "547fc82fb6450388eb29964afe172b531e07e39ab0218a7a138827d781a42ad0",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0025.nii.gz",
+      "gt_sha256": "655184e77d1265f8d14e43a14f575f22f319eec4ccbdbb3944cb82627baf0b7d"
+    },
+    {
+      "id": "FLARETs_0026",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0026_0000.nii.gz",
+      "image_sha256": "cdb032d6bc09da002d43f16ae12eb8928d70d3221f3c12a66d288b1d1eae2fcf",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0026.nii.gz",
+      "gt_sha256": "35a2e8f8d8904f56378781a33aa366c3359ff7e21fd3a98670a6a0f14120c41b"
+    },
+    {
+      "id": "FLARETs_0027",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0027_0000.nii.gz",
+      "image_sha256": "8e58556429130c26cbef2b50232d04ec3c6cb8df595abd0fb0079f488fac620a",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0027.nii.gz",
+      "gt_sha256": "603002fd7b7e9b475b32feab25b92a9b2074bf5d33657c924fbbe23642540b7e"
+    },
+    {
+      "id": "FLARETs_0028",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0028_0000.nii.gz",
+      "image_sha256": "eaa00de82ff65fda3db20be30325a2e2f7a0036c77a694a0251c856969a4b276",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0028.nii.gz",
+      "gt_sha256": "772644dd8de260ec784739f7a3595f31704c12d80d5cac5450bb49cc16c17169"
+    },
+    {
+      "id": "FLARETs_0029",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0029_0000.nii.gz",
+      "image_sha256": "841a95c11a9af54ec9ef1dbfac3e69ade776af885f955bd08e2410c7d850dadd",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0029.nii.gz",
+      "gt_sha256": "afe16cff60fc3a58daf345a73609bc691c1ce65ca1a8de4b3600d0feeb3bafff"
+    },
+    {
+      "id": "FLARETs_0030",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0030_0000.nii.gz",
+      "image_sha256": "138f717020c9a3462e861669ec22958254f609deb02968037cdc8197b9bc9191",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0030.nii.gz",
+      "gt_sha256": "10b3c1a1b761f4e4e1caa3677ed657f96f50f12e981ef9655299f9ccfa0fffa2"
+    },
+    {
+      "id": "FLARETs_0031",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0031_0000.nii.gz",
+      "image_sha256": "2c893ab01965f974369b8f264ee8b31462aadab188823f3955c9013e1f0b5cb4",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0031.nii.gz",
+      "gt_sha256": "1e9bd861464e272e81b33c92c023a7a88e65d5538e491e13983e0ceb60c14122"
+    },
+    {
+      "id": "FLARETs_0032",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0032_0000.nii.gz",
+      "image_sha256": "ec11acd198c96b2167fea3464c6894550898e22ba4036fde8ae79cda7112b959",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0032.nii.gz",
+      "gt_sha256": "28f295fa142545e64c0e6f0391a273d513723bff2ad2ac66e3babdf84f069847"
+    },
+    {
+      "id": "FLARETs_0033",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0033_0000.nii.gz",
+      "image_sha256": "e45246bfcf30414b9fabb223be42c3721c640bb9fa3b2385cd4aca4d50bedf77",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0033.nii.gz",
+      "gt_sha256": "0060b7e4a058e7f3a107641ceb40ed4d6b1d5a683cffc7b8a3b52b2bd4472110"
+    },
+    {
+      "id": "FLARETs_0034",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0034_0000.nii.gz",
+      "image_sha256": "adce023651e97928e86741f394fdaae07f5693a21de1436b4b8968b762f79168",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0034.nii.gz",
+      "gt_sha256": "dc341f2e7058b66422277cb65b7a6dca73da692b84f3eac3a2357ff5b083ee2f"
+    },
+    {
+      "id": "FLARETs_0035",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0035_0000.nii.gz",
+      "image_sha256": "ceba822dca102320a605179a73bca134c429715e7a78b49da54491d8cf32b834",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0035.nii.gz",
+      "gt_sha256": "2cbb7401f1bc606eeb086bec9b5919d69ec34f3d1da224509895cafd0a59e85e"
+    },
+    {
+      "id": "FLARETs_0036",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0036_0000.nii.gz",
+      "image_sha256": "b593f6e661714108b638ec08264c14fb87f84b95447a52caa1e942118f44f935",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0036.nii.gz",
+      "gt_sha256": "c9cbdc2a9b9f629503171608e8160921e2b66e48bb2867e47c7e2af27cb6be32"
+    },
+    {
+      "id": "FLARETs_0037",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0037_0000.nii.gz",
+      "image_sha256": "bc7e9533c5edfa10d96ab2bdc7927edd32062740abf9cfe7ce065af06dc94ded",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0037.nii.gz",
+      "gt_sha256": "ddbb2c48d13314c5de82db20f0e927f07d6f451c617c78c4f26e3b056bef1326"
+    },
+    {
+      "id": "FLARETs_0038",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0038_0000.nii.gz",
+      "image_sha256": "f75164667e57c19bfc2cf80ba4efd50ace0bb80c6d011f53af0c09e1b108d8c6",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0038.nii.gz",
+      "gt_sha256": "e07c41aca65c3f9efcafee2ad628a74057dc72b818753b19595c1b183f9e9828"
+    },
+    {
+      "id": "FLARETs_0039",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0039_0000.nii.gz",
+      "image_sha256": "3eae693597964c2e54cf7ddc756d32be725c950720dd2883c538c815f6a65546",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0039.nii.gz",
+      "gt_sha256": "f9d2c5c60b692745b9e4d999214d0a80e0f8ccb59390def9af333d1d8861b995"
+    },
+    {
+      "id": "FLARETs_0040",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0040_0000.nii.gz",
+      "image_sha256": "bdf80dac46beaa088633460820d30a0fc002d6891ee0c2b399f2ea93ed46beae",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0040.nii.gz",
+      "gt_sha256": "368d194c98fd8d67f761657c3d6b9d7a562b038f04b5caa785c94070dc760267"
+    },
+    {
+      "id": "FLARETs_0041",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0041_0000.nii.gz",
+      "image_sha256": "fdeb317d617447cb3bea4fdf6dbcbdf1a0fc046c36d1b889aa8b2001cd039ead",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0041.nii.gz",
+      "gt_sha256": "684912481d18eaaa8839c043b09596432dc3a72eed93c0d5da6aa917253b633f"
+    },
+    {
+      "id": "FLARETs_0042",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0042_0000.nii.gz",
+      "image_sha256": "690d03d170a249707eed27042843b3b616b5d0b947962063ae1a594f6c50299f",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0042.nii.gz",
+      "gt_sha256": "4723fcafdde7a777514700341c48a9eaf882573b56901264d3e5a61794935456"
+    },
+    {
+      "id": "FLARETs_0043",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0043_0000.nii.gz",
+      "image_sha256": "fb2a654969ee45150fb97e1a1a0b5dd691e4f0e293e40c2b0014c5af5f9b01ef",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0043.nii.gz",
+      "gt_sha256": "e6a6af2486026dba2d9cecc291b74179bb93c74dc2117d1d86265dc052f49e4e"
+    },
+    {
+      "id": "FLARETs_0044",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0044_0000.nii.gz",
+      "image_sha256": "2895a81d98adc10376a85a53f47a4d09f1667189bdf20c6c83fd0c2220cd8b06",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0044.nii.gz",
+      "gt_sha256": "b4c1118a399a9a55f39739db42be6f96950e8705dc860a0a26721df96cd4a727"
+    },
+    {
+      "id": "FLARETs_0045",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0045_0000.nii.gz",
+      "image_sha256": "c2e5ef41df90defe435782c495097112e54aaca4714ff5f675b5a06533ec03f5",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0045.nii.gz",
+      "gt_sha256": "0ff1b147b2e7ee1bea0b2d6030a775723a4b5a9c9e2be1cd5b0b0babccf39acd"
+    },
+    {
+      "id": "FLARETs_0046",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0046_0000.nii.gz",
+      "image_sha256": "62aa329f8615a2971c7ddce1cccd3d59bf0cccfb23be595ac3d53c056f9995df",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0046.nii.gz",
+      "gt_sha256": "5e0be024eb417cff9fcc7296e1ed2ca9f2683d7154606b1a32b79d000baa9fce"
+    },
+    {
+      "id": "FLARETs_0047",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0047_0000.nii.gz",
+      "image_sha256": "cbf0067798e6357568f08789494e3f9883f60dfb9a9a30976bfa88ec18ec6331",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0047.nii.gz",
+      "gt_sha256": "3368570497a3eabb0fc6d3af4de8431d5779f3c459249f948b55f7dc45f06908"
+    },
+    {
+      "id": "FLARETs_0048",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0048_0000.nii.gz",
+      "image_sha256": "081376a194e9a5b2ea2dcd243d21ddc52742a7bd32297e3b9e6a2e1d752c663b",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0048.nii.gz",
+      "gt_sha256": "9ab0c20e33afd0ac805eab5035c8e2d814f96c4e936ec6529c8876e956ff0bd6"
+    },
+    {
+      "id": "FLARETs_0049",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0049_0000.nii.gz",
+      "image_sha256": "9258b62441be45e9555778ace33746e53947d77a0b0568d6a47c8953971d00d6",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0049.nii.gz",
+      "gt_sha256": "5d47d4f646c055cd7746102b16b939a5ecb5b6c42267f32cdde0b1e1378abc98"
+    },
+    {
+      "id": "FLARETs_0050",
+      "image": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/imagesVal/FLARETs_0050_0000.nii.gz",
+      "image_sha256": "55d2cc0bb21dd40b6f2d8845f3e30235690c26ab0db45d10202e33cffbef633c",
+      "gt": "/hy-tmp/Hetero-UNet/data/nnUNet_raw/Dataset701_AbdomenCT/labelsVal/FLARETs_0050.nii.gz",
+      "gt_sha256": "b32418122176412686ff31fc421e8eb84d137f6de71f78b384c17dab90c31a90"
+    }
+  ],
+  "external_cases": 50,
+  "fold": "all",
+  "checkpoint": "checkpoint_best.pth",
+  "tta": false,
+  "step_size": 0.5,
+  "gaussian": true,
+  "patch_batch": 1,
+  "preprocessing_workers": 1,
+  "export_workers": 1,
+  "nsd_workers": 2,
+  "postprocessing": "none",
+  "runtime": "/hy-tmp/stage2_eval_20261024/runtime",
+  "low_memory_export_sha256": "89896becba72549deb4a794c159dadffaaccde79972fa30f915ca00a641d0b40",
+  "original_export_sha256": "a7c9e062e757ee3446942f593cbb7ab3b8c1f207dfaee819735952ec22020f66",
+  "export_equivalence_checks": [
+    {
+      "dtype": "<class 'numpy.float16'>",
+      "spacing": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "segmentation_and_probabilities_identical": true
+    },
+    {
+      "dtype": "<class 'numpy.float16'>",
+      "spacing": [
+        5.0,
+        0.8,
+        0.8
+      ],
+      "segmentation_and_probabilities_identical": true
+    },
+    {
+      "dtype": "<class 'numpy.float32'>",
+      "spacing": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "segmentation_and_probabilities_identical": true
+    },
+    {
+      "dtype": "<class 'numpy.float32'>",
+      "spacing": [
+        5.0,
+        0.8,
+        0.8
+      ],
+      "segmentation_and_probabilities_identical": true
+    }
+  ],
+  "metrics_sha256": {
+    "SurfaceDice.py": "27f0790c23fd9ea51c52fb8d308505e79cddb55881899936b64b9e59056bf3a5",
+    "abdomen_DSC_Eval.py": "cceabd9ba6b3e6b6c0a94c9ebe66f2de9d7c3f0e035a75e3a33c58e5a3cbb77b",
+    "abdomen_NSD_Eval.py": "bff791c3bb397fa36ed76165773790be361d5597f3932c3ffcd4b2dea724c121",
+    "nsd_parallel.py": "0955fbf40fa6968e2723247df3be4acf38e03075217d4c773d29bc0e311df074"
+  },
+  "baseline_A_csv_sha256": {
+    "DSC.csv": "6cb91d4ce88830955adb32657a09923af2585c393e0a61960f128f3e98e34036",
+    "NSD.csv": "4a1cb92d03b54308f57c87a1000286dbb9e788d563dc1dfcc4f8fc6d54bfbd21"
+  },
+  "MHA": "official batch_first=False unchanged; one patch per forward",
+  "shutdown_authorized": false,
+  "training_source_unmodified": true,
+  "limitations": [
+    "single-seed exploratory comparison",
+    "F resumed across 4090/V100; C trained on V100 throughout",
+    "baseline A exporter used original for 49 cases and equivalent patch for 0050"
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "status": "local_C_archive_verified",
+  "path": "E:\\PycharmProjects\\Hetero-UNet\\output\\stage2_C_completed_2026-10-24\\C_seed1234_final.tar",
+  "bytes": 1451171840,
+  "sha256": "1e11f84070920cc00399d66f9ad3d9991e926bf37713c0964f9acc4b412c6937",
+  "transfer_seconds": 538.95,
+  "prefix_reused_bytes": 330301440,
+  "parallel_connections": 4
+}

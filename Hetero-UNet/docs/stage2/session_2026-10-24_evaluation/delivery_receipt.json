@@ -1,0 +1,9 @@
+{
+  "status": "C_completed_and_evaluation_start_records_verified",
+  "remote": "oss://backup/stage2_20261024/C_completed_review/completion_and_evaluation_delivery.tar",
+  "bytes": 266240,
+  "sha256": "eca4117a213b01e41749d19e2537baf6f3b97a63d2ab767ebf4eb27569761607",
+  "roundtrip_passed": true,
+  "checked_utc": "2026-10-24T09:20:07.218579+00:00",
+  "shutdown_authorized": false
+}

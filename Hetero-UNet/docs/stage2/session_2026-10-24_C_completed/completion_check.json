@@ -1,0 +1,77 @@
+{
+  "status": "completed_C_verified",
+  "checked_utc": "2026-10-24T08:58:01.026445+00:00",
+  "started_beijing": "2026-10-22T23:23:17.702350+08:00",
+  "finished_beijing": "2026-10-24T15:57:42.609757+08:00",
+  "duration_seconds": 146064.907407,
+  "epochs_completed": 1000,
+  "run_id": "20261022T152315.040085Z_1ad47600",
+  "source_commit": "9fe70ac570a0e14ebce30daa4a16a22e49b4f3fd",
+  "F_C_source_and_descriptor_fingerprints_match": true,
+  "source_files_matched": 14,
+  "checkpoints": [
+    {
+      "checkpoint": "checkpoint_best.pth",
+      "epoch": 994,
+      "bytes": 724675404,
+      "sha256": "675dec5bba1bb46b5fbc611676dc710a377350357ba40579816dbbf15fc22a71",
+      "network_finite": true,
+      "optimizer_present": true
+    },
+    {
+      "checkpoint": "checkpoint_final.pth",
+      "epoch": 1000,
+      "bytes": 724683358,
+      "sha256": "233fd553294770b38ff005872f2acd2853b72bb9d6ee7de2e13357ab1902b16e",
+      "network_finite": true,
+      "optimizer_present": true
+    }
+  ],
+  "training_loss_count": 1000,
+  "validation_loss_count": 1000,
+  "boundary_loss_count": 1000,
+  "all_epoch_losses_finite": true,
+  "max_loss_composition_rounding_error": 4.980888366701297e-05,
+  "mean_epoch_compute_seconds": 143.6754899999999,
+  "last_train_loss": -0.7117,
+  "last_validation_loss": -0.8259,
+  "fresh_OSS_objects": [
+    {
+      "remote": "oss://backup/stage2_20261022/C_seed1234_verified/C_seed1234_final.tar",
+      "bytes": 1451171840,
+      "sha256": "1e11f84070920cc00399d66f9ad3d9991e926bf37713c0964f9acc4b412c6937",
+      "roundtrip_verified_utc": "2026-10-24T07:59:02.289688+00:00",
+      "fresh_verified_utc": "2026-10-24T08:57:56.215500+00:00"
+    },
+    {
+      "remote": "oss://backup/stage2_20261022/C_seed1234_verified/final_audit.tar",
+      "bytes": 2037760,
+      "sha256": "3ed5da1b5d1e74b8a6217c055ca17858870eda3604600d3a591285596575c20f",
+      "roundtrip_verified_utc": "2026-10-24T07:59:08.078352+00:00",
+      "fresh_verified_utc": "2026-10-24T08:57:59.199088+00:00"
+    },
+    {
+      "remote": "oss://backup/stage2_20261022/C_seed1234_verified/backup_receipt.tar",
+      "bytes": 10240,
+      "sha256": "8cadf21da5616bceed13ad8687f01f2eac38771f52af9277a1c70fb1f7faacc1",
+      "roundtrip_verified_utc": "2026-10-24T07:59:12.046380+00:00",
+      "fresh_verified_utc": "2026-10-24T08:58:01.026336+00:00"
+    }
+  ],
+  "archive_files_individually_matched": 12,
+  "shutdown_authorized": false,
+  "backup_state": "verified_not_armed",
+  "instance_kept_running": true,
+  "external_50_evaluation_performed": false,
+  "F_aux_formal_training_started": false,
+  "disk": {
+    "total": 53687091200,
+    "used": 21138497536,
+    "free": 32548593664
+  },
+  "completion_review_backup": {
+    "remote": "oss://backup/stage2_20261024/C_completed_review/completion_review.tar",
+    "sha256": "3c6a118297375db35b43195fdcf27cbee198115dfe1bddc46712930b919bbe20",
+    "roundtrip_passed": true
+  }
+}
