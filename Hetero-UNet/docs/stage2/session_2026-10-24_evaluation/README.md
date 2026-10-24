@@ -5,5 +5,8 @@
 - `protocol.json`：50例清单、数据/权重/脚本指纹、F/C统一推理配置及低内存补丁等价检查。
 - `start_state.json`：启动时F推理中的状态，不代表最终完成。
 - `delivery_receipt.json`：C完成记录、最新工作计划及评价启动配置的OSS上传/回读收据。
+- `evaluation_shutdown_config.json`、`shutdown_armed_state.json`：用户晚间新授权的收尾关机配置及独立程序已启动凭据，覆盖早期保持开机安排。
+- `shutdown_tests.json`：10项隔离测试通过记录，关机调用均为模拟。
+- `shutdown_policy_backup_receipt.json`：新授权、工作计划与收尾程序的OSS上传/回读凭据。
 
 评价脚本及流程见[执行记录](../F_C_EVALUATION_2026-10-24.md)。原始影像、预测和权重不提交Git；最终CSV和汇总在任务产出后另行收集。

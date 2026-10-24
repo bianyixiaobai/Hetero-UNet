@@ -1,0 +1,9 @@
+{
+  "status": "waiting_for_F_C_evaluation",
+  "verified": {},
+  "shutdown_authorized": true,
+  "config_sha256": "50e7d34216b50b36a4440df997be18a7443da847290b70b77dc4c3a617b98322",
+  "created_utc": "2026-10-24T11:54:18.285539+00:00",
+  "updated_utc": "2026-10-24T11:54:18.286054+00:00",
+  "current_model": "C"
+}

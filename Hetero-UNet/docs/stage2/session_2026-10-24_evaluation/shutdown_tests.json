@@ -1,0 +1,7 @@
+{
+  "suite": "test_evaluation_shutdown.py",
+  "passed": 10,
+  "failed": 0,
+  "platform": "Windows local, all shutdown invocations mocked",
+  "command": "python -m unittest discover -s Hetero-UNet/umamba/nnunetv2/tests/unit_tests -p test_evaluation_shutdown.py -v"
+}

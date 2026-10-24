@@ -1,0 +1,11 @@
+{
+  "work_dir": "/hy-tmp/stage2_eval_20261024",
+  "hostname": "I2bde78031f00701d9e",
+  "protocol_sha256": "a1ef39210ecb6b5fa9cdd0a6f7f38387eb014e5fceca22fd035b94e69eeba2b8",
+  "shutdown_authorized": true,
+  "shutdown_executable": "/usr/local/bin/shutdown",
+  "shutdown_sha256": "30b9ea6f23173078ccfe57d9b15ffe8caf5ba1442477f32c2c170ea0e97771d7",
+  "oss_prefix": "oss://backup/stage2_20261024/F_C_external50",
+  "poll_seconds": 60,
+  "user_authorization": "2026-10-24: User authorized shutdown after C inference/evaluation, records and data summaries, and verified backup; supersedes prior keep-running policy."
+}

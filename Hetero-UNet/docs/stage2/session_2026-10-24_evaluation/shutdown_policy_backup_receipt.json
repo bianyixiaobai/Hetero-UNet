@@ -1,0 +1,9 @@
+{
+  "status": "shutdown_policy_and_start_verified",
+  "remote": "oss://backup/stage2_20261024/F_C_external50/shutdown_policy_and_start.tar",
+  "sha256": "74e9c613b9ade338868a4ec90eba9d1b8a8a73b8c8ce23e0b54355dfc68dcd7d",
+  "bytes": 102400,
+  "roundtrip_passed": true,
+  "shutdown_authorized": true,
+  "checked_utc": "2026-10-24T11:55:37.050314+00:00"
+}
