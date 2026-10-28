@@ -1,0 +1,8 @@
+{
+  "remote": "oss://backup/stage2_20261029/F_aux/F_aux_startup.tar",
+  "bytes": 1351680,
+  "sha256": "94484e145b06e39257a5d0533d0b2f20417002cf1a2e0978bdcc1be4db5f541e",
+  "roundtrip_passed": true,
+  "checked_utc": "2026-10-28T19:10:47.584816+00:00",
+  "scope": "startup records and code only; final training/evaluation not yet complete"
+}

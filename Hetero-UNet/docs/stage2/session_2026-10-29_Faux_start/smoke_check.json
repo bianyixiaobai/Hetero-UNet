@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "boundary_head_train_gradient_nonzero": true,
+  "all_aggregators_received_no_guidance": true,
+  "head_skipped_during_inference": true,
+  "MHA_batch_first": false,
+  "physical_batch": 2,
+  "patch": [
+    40,
+    224,
+    192
+  ],
+  "train_loss": 3.986539840698242,
+  "boundary_loss": 1.2516577243804932,
+  "validation_loss": 3.8408634662628174,
+  "peak_allocated_bytes": 9714510336,
+  "scope": "synthetic full-plan CUDA/AMP; not efficacy data"
+}

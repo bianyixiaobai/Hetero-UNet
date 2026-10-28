@@ -1,0 +1,17 @@
+{
+  "status": "formal_F_aux_training_confirmed",
+  "checked_utc": "2026-10-28T19:10:42.256535+00:00",
+  "started_utc": "20261028T190557.274689Z",
+  "current_log_epoch_zero_based": 1,
+  "completed_epochs": 1,
+  "epoch_compute_seconds": [
+    145.32
+  ],
+  "source_commit": "9fe70ac570a0e14ebce30daa4a16a22e49b4f3fd",
+  "training_source_clean": true,
+  "from_scratch": true,
+  "shutdown_armed_after_verified_delivery": true,
+  "pipeline_sha256": "4a5820813d626c1a00a1869bf444a0d869ca8344f82336c940595ddd08a51627",
+  "tmux_session": "stage2_Faux_20261029",
+  "OSS_expiry_utc": "2026-10-29T18:27:27+00:00"
+}

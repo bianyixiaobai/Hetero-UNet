@@ -1,0 +1,11 @@
+test_active_gpu_blocks_shutdown (__main__.FauxDeliveryTests.test_active_gpu_blocks_shutdown) ... ok
+test_changed_checkpoint_blocks_packaging (__main__.FauxDeliveryTests.test_changed_checkpoint_blocks_packaging) ... ok
+test_config_authorization_is_also_required (__main__.FauxDeliveryTests.test_config_authorization_is_also_required) ... ok
+test_corrupt_roundtrip_is_retried_before_receipt (__main__.FauxDeliveryTests.test_corrupt_roundtrip_is_retried_before_receipt) ... FAUX_STATE {"created_utc": "2026-10-28T19:07:35.741919+00:00", "status": "backup_pending_retry", "updated_utc": "2026-10-28T19:07:35.741934+00:00", "pending_object": "sample.tar", "backup_error": "Traceback (most recent call last):\n  File \"/hy-tmp/stage2_Faux_20261029/run_stage2_faux_20261029.py\", line 338, in upload_verified\n    assert returned.stat().st_size == size and sha(returned) == expected, 'OSS SHA mismatch'\n                                               ^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: OSS SHA mismatch\n"}
+ok
+test_no_shutdown_without_explicit_arm (__main__.FauxDeliveryTests.test_no_shutdown_without_explicit_arm) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.008s
+
+OK
