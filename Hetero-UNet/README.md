@@ -7,7 +7,9 @@ Official repository for Hetero-UNet: Heterogeneous Transformer with Mamba for Me
 F (Block-AttnRes), C (boundary-guided Block-AttnRes), and the boundary-supervision
 control are described in [the stage-two implementation and deployment notes](docs/stage2/README.md).
 The original MambaUNet and its MHA layout are preserved. The notes distinguish
-local CPU verification from the CUDA smoke test and full experiments still to run.
+completed CUDA checks and F/C experiments from the ongoing F-aux control and
+pending repeated-seed confirmation. See the [project document guide](../项目文档导航.md)
+for current tasks and local artifacts.
 
 ## Installation 
 

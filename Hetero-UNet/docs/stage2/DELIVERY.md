@@ -1,15 +1,33 @@
-# 本次交付与恢复工作入口
+# 交付与恢复工作入口
 
-交付日期：2026-10-14。
+更新日期：2026-10-29。总导航见[项目文档导航](../../../项目文档导航.md)，任务和研究方向见[根目录工作计划](../../../Mamba-Attention医学图像分割_工作计划.md)。
 
-- 仓库：[bianyixiaobai/Hetero-UNet](https://github.com/bianyixiaobai/Hetero-UNet)。
-- 发布分支：[codex/bg-block-attnres-stage2](https://github.com/bianyixiaobai/Hetero-UNet/tree/codex/bg-block-attnres-stage2)。
-- 实现提交：[3d6d7f629ccc19e7db6a2b7cb24b49732d271288](https://github.com/bianyixiaobai/Hetero-UNet/commit/3d6d7f629ccc19e7db6a2b7cb24b49732d271288)。已成功推送，并通过`git ls-remote`核验远端分支为此提交。本记录随后以文档提交补充，最新HEAD用`git log -1 --oneline`查询。
-- main未覆盖；原A网络/Trainer与实现前`04180d4`逐文件diff为空，原MHA保留。
-- 最终复测：65项单元测试通过；6组F/C/F-aux的2D/3D CPU框架诊断通过；Python语法与Git空白检查通过。
+## 代码与实际训练版本
 
-已实现F、C、F-aux、边界分支/损失、分组深度聚合、独立Trainer、运行入口和追溯记录。服务器已关闭，因此没有开展真实CUDA检查、完整训练或新增50例评价。CPU诊断中的Mamba为显式替身，不作为性能证据。
+- 仓库：[bianyixiaobai/Hetero-UNet](https://github.com/bianyixiaobai/Hetero-UNet)。实验分支为`codex/bg-block-attnres-stage2`。
+- F/C及本轮F-aux实际训练仓库固定为`9fe70ac570a0e14ebce30daa4a16a22e49b4f3fd`，位置`/hy-tmp/Hetero-UNet-stage2/`。模型与原MHA未因后续诊断或文档整理而改动。
+- F-aux独立调度、收尾保护检查和启动记录提交为`93c196a`；诊断脚本记录为`334dbab`。操作/文档提交不表示服务器训练仓库已切换到相同HEAD。
+- 最新分支提交用`git log -1 --oneline`或GitHub查看；历史文档中的提交号说明对应时间点。
 
-恢复工作时先阅读[服务器操作手册](SERVER_RUNBOOK.md)：新目录克隆分支 → 恢复数据/plans和OSS导出补丁 → 原GPU环境安装代码 → F/C短程CUDA验收 → 开发划分调参与冻结 → 完整训练与外部评价。当前工作计划为外层根目录v1.8；[变更记录](CHANGELOG.md)解释各文件用途和设计选择。
+## 已交付与当前任务
 
-本机附属产物在外层`output/`：`document_backups/`保存工作计划v1.7备份，`stage2_framework_check/`保存合成检查点/JSON报告/最终日志，`stage2_venv/`是CPU诊断环境。这些被Git忽略；正式代码与文档在分支上，服务器不需要上传整个output目录。用户CSV、图片、旧分析文档和备份未混入本次提交。
+真实CUDA/AMP和真实数据短程通过；F/C各1000轮、同协议外部50例DSC/NSD、权重及结果备份均已核验；10月29日全50例错误分层与五例引导诊断完成。现执行[F-aux从头训练、推理评价和归档关机](FAUX_TRAINING_2026-10-29.md)。多种子稳定性与边界监督/注入的独立贡献仍需确认。
+
+本轮F-aux完训、推理评价、四份OSS归档及最终收据回读通过后才关机。10月24日C评价阶段的关机授权和更早“保持开机”记录都是历史，不能替代本轮配置。
+
+## 材料分工与恢复顺序
+
+| 材料 | 位置与用途 |
+|---|---|
+| 实现及可部署脚本 | `Hetero-UNet/umamba/`、`Hetero-UNet/scripts/`，随Git保存 |
+| 实现说明、执行记录和精简收据 | 本docs目录，随Git保存 |
+| 完整权重、预测、CSV、诊断图/数组、下载包 | 本机output及对应OSS对象，不随Git保存；清单见[output说明](../../../output/README.md)，本机可用 |
+| 当前总体任务 | 根目录工作计划主版本；output同名旧副本仅供历史追溯 |
+
+当前训练继续沿用固定源码和已恢复环境。将来更换实例时，先确定待恢复实验/检查点及其源码版本→从OSS或已校验本机包恢复数据、plans、权重、运行记录与导出补丁→核对SHA256和环境→按原配置恢复相应任务。新实例恢复不等于将现有F/C重新训练。
+
+手动操作见[服务器手册](SERVER_RUNBOOK.md)，归档引用见[F/C评价收尾](EVALUATION_SHUTDOWN_2026-10-24.md)、[诊断记录](DIAGNOSTICS_2026-10-29.md)及[F-aux执行记录](FAUX_TRAINING_2026-10-29.md)。权重包与结果包各有用途，启动审计包不能替代最终权重。
+
+## 10月14日初次交付历史
+
+初始实现提交为`3d6d7f629ccc19e7db6a2b7cb24b49732d271288`，当时仅完成65项单元测试及6组CPU框架诊断；显式Mamba替身不作为CUDA或分割性能证据。随后已完成真实CUDA验收及F/C实验，因此旧“服务器未验收”“工作计划v1.8”“output不含正式结果”等描述不再作为当前进度。

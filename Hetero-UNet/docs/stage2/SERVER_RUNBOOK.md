@@ -1,6 +1,8 @@
 # 阶段二服务器操作手册
 
-日期：2026-10-14。以下为服务器恢复后的操作，尚未执行。当前只完成本机实现与CPU验证。
+更新日期：2026-10-29。本页为恢复和手动操作参考。真实CUDA短程、F/C正式训练及外部50例评价已完成；当前F-aux已由独立后台队列接管，见[F-aux执行记录](FAUX_TRAINING_2026-10-29.md)。以下命令不表示待立即重跑的任务。
+
+当前V100训练仓库固定为`9fe70ac`；新文档及调度脚本在实验分支另行提交。训练、推理期间保持原源码和环境，手动命令不与现有队列重复启动。总体进度见[阶段二入口](README.md)。
 
 ## 1. 在新目录拉取代码
 
@@ -16,7 +18,7 @@ export STAGE2_REPO=/hy-tmp/Hetero-UNet-stage2
 export STAGE2_PROJECT=$STAGE2_REPO/Hetero-UNet
 ```
 
-已克隆过时，在此新仓库目录使用`git pull --ff-only`更新。不要将新分支强行合并到旧main。如果`/hy-tmp`数据已清理，先从OSS恢复数据、旧plans、权重与低内存导出补丁；核对路径和完整性后再跑。Git仓库不提供这些大文件。
+新实例部署时按待恢复实验的记录选择提交；已有实例只有在相关训练/推理停止且确认新版本后，才使用`git pull --ff-only`更新。当前V100固定训练版本不执行此更新。不要将实验分支强行合并到旧main。如果`/hy-tmp`数据已清理，先从OSS恢复数据、旧plans、权重与低内存导出补丁；核对路径和完整性后再跑。Git仓库不提供这些大文件。
 
 激活之前训练成功的GPU Python环境，然后安装本项目代码，不重新解析/升级依赖：
 
@@ -69,7 +71,7 @@ python scripts/run_stage2.py --model C --fold 0 --development --seed 1234 --resu
 
 去掉`--smoke`才按完整训练预算运行开发实验；本例只是内部划分短程查错。目录带`_dev_fold0`，不混入主实验。首轮代码组大小3、边界隐藏通道8、辅助权重0.1；如修改Trainer超参，先在开发集决定并记录Git版本，再给所有相关组冻结一致协议。开发运行允许单独plans，但其结果不能冒充原CT协议结果。
 
-## 5. 正式训练F/C，按需加入F-aux
+## 5. 正式训练参考：F、C、F-aux
 
 先通过上述验收，再在tmux会话中运行以免SSH断线打断：
 
@@ -92,7 +94,7 @@ python scripts/run_stage2.py --model F-aux --seed 1234 --results-root /hy-tmp/st
 
 ## 6. 外部50例统一推理与评价
 
-**2026-10-24执行更新**：F/C均已完训，并在独立`/hy-tmp/stage2_eval_20261024/`启动评价队列，协议、日志与归档详见[F/C评价记录](F_C_EVALUATION_2026-10-24.md)。以下手动命令供参考；不要与正在运行的后台队列重复启动。
+**已完成记录**：F/C已在独立`/hy-tmp/stage2_eval_20261024/`完成评价和归档；协议、日志及结果见[F/C评价记录](F_C_EVALUATION_2026-10-24.md)。本轮F-aux将复用相同runtime与评价实现。以下为手动参考，不与现有后台队列重复启动。
 
 训练完成后，先设置实际外部图像和GT路径（不要把训练imagesTr作为外部测试集）：
 
@@ -101,6 +103,9 @@ export CT50_IMAGES=/实际恢复位置/外部50例/images
 export CT50_GT=/实际恢复位置/外部50例/labels
 export STAGE2_EVAL=/hy-tmp/stage2_eval
 mkdir -p "$STAGE2_EVAL"
+# 手动参考要求此runtime已按归档恢复并核验，内含原等价低内存导出补丁。
+export STAGE2_RUNTIME=/hy-tmp/stage2_eval_20261024/runtime
+export PYTHONPATH="$STAGE2_RUNTIME${PYTHONPATH:+:$PYTHONPATH}"
 export nnUNet_results=/hy-tmp/stage2_results/stage2_F_seed1234
 nnUNetv2_predict -i "$CT50_IMAGES" -o "$STAGE2_EVAL/F_seed1234" -d 701 -c 3d_fullres -f all -tr nnUNetTrainerMambaUNetBlockAttnRes -chk checkpoint_best.pth --disable_tta -npp 1 -nps 1
 export nnUNet_results=/hy-tmp/stage2_results/stage2_C_seed1234
@@ -109,14 +114,14 @@ nnUNetv2_predict -i "$CT50_IMAGES" -o "$STAGE2_EVAL/C_seed1234" -d 701 -c 3d_ful
 
 必须同时匹配Trainer和结果根目录。F-aux使用`stage2_F-aux_seed1234`及`nnUNetTrainerMambaUNetBlockAttnResBoundarySupervision`。推理器现在遵守fold/checkpoint参数；不再偷偷改成固定best，因此本手册显式传`-f all -chk checkpoint_best.pth`。保持相同滑窗设置（默认step_size=0.5）与无TTA；不要不同组单独调整推理协议。
 
-原低内存导出补丁已于10月21日从OSS恢复，位置为`/hy-tmp/stage2_audit_2026-10-21/pred50_artifacts/backup50/export_prediction_lowmem_patch.py.bak`。10月24日已核对AST确认只改变重采样转换函数，并在FP16/FP32及两种spacing的4组检查中得到逐元素相同的分割和概率。当前队列在独立runtime中对F/C统一使用该补丁，不覆盖训练仓库；A使用补丁处理0050的既有记录保留。若导出未完成，不把残缺病例列表直接求均值当作50例结果。
+原低内存导出补丁已于10月21日从OSS恢复，位置为`/hy-tmp/stage2_audit_2026-10-21/pred50_artifacts/backup50/export_prediction_lowmem_patch.py.bak`。10月24日已核对AST确认只改变重采样转换函数，并在FP16/FP32及两种spacing的4组检查中得到逐元素相同的分割和概率。F/C评价已在独立runtime中统一使用该补丁，本轮F-aux将复用，不覆盖训练仓库；A使用补丁处理0050的既有记录保留。若导出未完成，不把残缺病例列表直接求均值当作50例结果。
 
 使用同一评价脚本、13器官顺序和NSD容差，例：
 
 ```bash
 cd "$STAGE2_PROJECT"
 python evaluation/abdomen_DSC_Eval.py --gt_path "$CT50_GT" --seg_path "$STAGE2_EVAL/F_seed1234" --save_path "$STAGE2_EVAL/F_seed1234_DSC.csv"
-PYTHONPATH="$STAGE2_PROJECT/evaluation:${PYTHONPATH:-}" python "$STAGE2_REPO/evaluation/nsd_parallel.py" --gt_path "$CT50_GT" --seg_path "$STAGE2_EVAL/F_seed1234" --save_path "$STAGE2_EVAL/F_seed1234_NSD.csv" --workers 6
+PYTHONPATH="$STAGE2_PROJECT/evaluation:${PYTHONPATH:-}" python "$STAGE2_REPO/evaluation/nsd_parallel.py" --gt_path "$CT50_GT" --seg_path "$STAGE2_EVAL/F_seed1234" --save_path "$STAGE2_EVAL/F_seed1234_NSD.csv" --workers 2
 ```
 
 把以上F路径统一替换为C/F-aux路径评价对应配置。并行NSD沿用现有脚本及裁剪/空器官规则；`PYTHONPATH`指向内层evaluation以找到`SurfaceDice.py`。确认50个完整预测均有对应GT、形状/空间信息一致、两个CSV各50例×13器官、没有遗漏/无穷/NaN；保留逐病例配对结果。后处理如有变化须统一并记录。
