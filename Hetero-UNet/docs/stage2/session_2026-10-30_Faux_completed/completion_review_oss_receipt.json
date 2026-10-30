@@ -1,0 +1,7 @@
+{
+  "status": "completion_review_OSS_roundtrip_passed",
+  "remote": "oss://backup/stage2_20261029/F_aux/F_aux_completion_review_20261030.tar",
+  "bytes": 122880,
+  "sha256": "4547bc7ffb564bd24f8b5277b7bdba6fc05778d32a15f3ff469a857d736d44ef",
+  "verified_utc": "2026-10-30T15:35:54.081687+00:00"
+}

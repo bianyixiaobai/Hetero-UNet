@@ -7,7 +7,7 @@
 | 入口 | 用途 |
 |---|---|
 | [阶段二说明](stage2/README.md) | 模块定义、已核验进度、后续待验证事项 |
-| [F-aux执行记录](stage2/FAUX_TRAINING_2026-10-29.md) | 当前训练、后续推理评价及归档关机条件 |
+| [F-aux完成核验](stage2/FAUX_COMPLETED_2026-10-30.md) | 已完成训练评价、四组首轮结果与归档 |
 | [F/C诊断记录](stage2/DIAGNOSTICS_2026-10-29.md) | 错误类型、边界图及深度权重诊断 |
 | [服务器操作手册](stage2/SERVER_RUNBOOK.md) | 恢复和手动操作参考；不是自动执行指令 |
 | [交付与恢复](stage2/DELIVERY.md) | 训练版本、代码分支、本机/OSS材料和恢复规则 |

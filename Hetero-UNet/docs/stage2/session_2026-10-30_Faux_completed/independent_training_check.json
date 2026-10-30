@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "training_epochs": 1000,
+  "validation_epochs": 1000,
+  "boundary_loss_epochs": 1000,
+  "loss_composition_rounding_error_max": 4.989404678339138e-05,
+  "last_train_loss": -0.7177,
+  "last_validation_loss": -0.7839,
+  "last_boundary_unweighted_loss": 0.60677570104599,
+  "last_segmentation_loss": -0.7784098386764526
+}

@@ -1,0 +1,24 @@
+{
+  "status": "passed",
+  "checked_utc": "2026-10-30T10:14:55.197298+00:00",
+  "epochs": 1000,
+  "checkpoints": [
+    {
+      "file": "checkpoint_best.pth",
+      "epoch": 1000,
+      "bytes": 724666182,
+      "sha256": "d6f06477e3bd4cf2a62a3c85adfa6a366562dc2e7b1a2a3d8432275e29d079a6"
+    },
+    {
+      "file": "checkpoint_final.pth",
+      "epoch": 1000,
+      "bytes": 724667214,
+      "sha256": "39295a76d8b60f0906da1b870a1e4914e59631ec5e52e651e0bb2b0b900937ec"
+    }
+  ],
+  "train_loss_count": 1000,
+  "validation_loss_count": 1000,
+  "boundary_loss_count": 1000,
+  "finite_weights_and_losses": true,
+  "source_and_descriptors_match_F_C": true
+}
