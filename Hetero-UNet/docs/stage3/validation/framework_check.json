@@ -1,0 +1,85 @@
+{
+  "scope": "real nnU-Net encoder/decoder/trainer with synthetic batches",
+  "not_tested": [
+    "real selective-scan CUDA kernel",
+    "full CT patch GPU memory",
+    "DSC/NSD efficacy"
+  ],
+  "torch": "2.12.0+cpu",
+  "runs": [
+    {
+      "dim": 2,
+      "trainer": "nnUNetTrainerMambaUNetMultiScaleSkip",
+      "fusion_parameters": 1856,
+      "total_parameters": 199542,
+      "conv_feature_map_estimate": 42432,
+      "initial_decoder_identity": true,
+      "train_loss": 1.1525260210037231,
+      "validation_loss": 1.1089298725128174,
+      "roundtrip_shape": [
+        1,
+        3,
+        16,
+        16
+      ],
+      "status": "passed",
+      "mamba": "explicit_cpu_test_double"
+    },
+    {
+      "dim": 2,
+      "trainer": "nnUNetTrainerMambaUNetBGMultiScaleSkip",
+      "fusion_parameters": 1856,
+      "total_parameters": 200463,
+      "conv_feature_map_estimate": 42432,
+      "initial_decoder_identity": true,
+      "train_loss": 1.1630516052246094,
+      "validation_loss": 1.0225818157196045,
+      "roundtrip_shape": [
+        1,
+        3,
+        16,
+        16
+      ],
+      "status": "passed",
+      "mamba": "explicit_cpu_test_double"
+    },
+    {
+      "dim": 3,
+      "trainer": "nnUNetTrainerMambaUNetMultiScaleSkip",
+      "fusion_parameters": 1856,
+      "total_parameters": 256390,
+      "conv_feature_map_estimate": 276224,
+      "initial_decoder_identity": true,
+      "train_loss": 1.266843318939209,
+      "validation_loss": 1.2422688007354736,
+      "roundtrip_shape": [
+        1,
+        3,
+        8,
+        16,
+        16
+      ],
+      "status": "passed",
+      "mamba": "explicit_cpu_test_double"
+    },
+    {
+      "dim": 3,
+      "trainer": "nnUNetTrainerMambaUNetBGMultiScaleSkip",
+      "fusion_parameters": 1856,
+      "total_parameters": 258463,
+      "conv_feature_map_estimate": 276224,
+      "initial_decoder_identity": true,
+      "train_loss": 1.3248440027236938,
+      "validation_loss": 1.220717191696167,
+      "roundtrip_shape": [
+        1,
+        3,
+        8,
+        16,
+        16
+      ],
+      "status": "passed",
+      "mamba": "explicit_cpu_test_double"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-03",
+  "new_unit_tests": 7,
+  "regression_tests_total": 128,
+  "regression_passed": 127,
+  "skipped": 1,
+  "cpu_framework_configurations": 4,
+  "mamba": "explicit_cpu_test_double",
+  "server_connected": false,
+  "formal_training_started": false,
+  "initial_sandbox_run": "21 temporary-directory ACL errors; normal-permission retry passed",
+  "source_sha256": {
+    "Hetero-UNet\\scripts\\run_stage3.py": "dc21fedf15b070b8143fcec1b7fb8d3183ffef9369a6091082a7900ef1e2fc8d",
+    "Hetero-UNet\\scripts\\check_stage3_framework.py": "1f4a8a024a40616161f8885596ed783193a2b61d5ace086ffb4b253fdb879f1f",
+    "Hetero-UNet\\umamba\\nnunetv2\\nets\\multiscale_skip_fusion.py": "d9c5d0fc0ea0c3838a4fa7ebf38a03960a0a1119729e0c071329a3f610822875",
+    "Hetero-UNet\\umamba\\nnunetv2\\nets\\MambaUNetSkipFusion.py": "967c70a98f07f1b2fa42b3c39cabd09b977f6e976ce09976c6870e543020010a",
+    "Hetero-UNet\\umamba\\nnunetv2\\training\\nnUNetTrainer\\nnUNetTrainerMambaUNetSkipFusion.py": "08de2d214204771685bc221096018d0d0f893d881a2e034bce1741df9c5890c2",
+    "Hetero-UNet\\umamba\\nnunetv2\\tests\\unit_tests\\test_multiscale_skip_fusion.py": "7846c80566ef43d131176e5eb47533d6c31daaa10994e6edbd41c1abb1177863"
+  },
+  "remaining": [
+    "real CUDA/AMP",
+    "full CT patch and physical batch2 memory",
+    "efficiency and DSC/NSD"
+  ]
+}
