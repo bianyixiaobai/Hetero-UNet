@@ -1,0 +1,7 @@
+{
+  "created_utc": "2026-11-03T08:04:14.471725+00:00",
+  "status": "training",
+  "updated_utc": "2026-11-03T08:08:19.850051+00:00",
+  "object": "oss://datasets/Dataset701_AbdomenCT-20260910T013250Z-1-003.zip",
+  "model": "D"
+}

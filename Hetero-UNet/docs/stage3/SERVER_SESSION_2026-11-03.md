@@ -39,3 +39,5 @@ seed1234、fold_all、3d_fullres、物理batch2、patch `[40,224,192]`、原MHA�
 北京时间16:07完整CUDA检查通过：D/E均为原patch、物理batch2、真实Mamba、AMP，峰值已分配显存分别11,882,438,656与12,204,496,384字节。随后D/E真实数据短程各2轮通过，日志包含有限train/val loss和Training done；E边界loss分量已记录。startup.tar的OSS上传回读通过，原始凭据另存本机与本目录session子目录。
 
 **16:08:19队列进入D正式1000轮；16:08:27开始零基Epoch 0，学习率0.01，GPU工作正常。** D/E正式训练、外部评价及最终收尾尚未完成；本启动说明不替代最终完成收据，正式DSC/NSD尚未生成。
+
+16:11首轮完成，train_loss 0.9489、val_loss 0.6349、耗时163.63秒，随后进入Epoch 1。完整启动manifest和日志摘录另存session目录。Git仅出现OSS工具按Windows旧日志路径创建的未跟踪日志文件，未修改受版本控制的模型源码；原始manifest保留这一dirty状态，不回写成干净。
