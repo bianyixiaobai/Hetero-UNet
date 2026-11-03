@@ -2,7 +2,7 @@
 
 ## 工作计划
 
-> 版本：v1.23；更新日期：2026-11-03。
+> 版本：v1.24；更新日期：2026-11-03。
 > 当前进度：阶段一CT基线及阶段二A/F/C/F-aux首轮训练、评价和归档已完成。按用户决定暂缓模块一调优，模块二首版本机编码已完成，D/E独立入口、7项新增检查及4种CPU框架配置通过，全套128项回归通过（1项跳过）。当前处于阶段三3.2本机交付，真实CUDA/完整CT patch资源验收及正式训练待租好服务器后开展；CPU框架使用显式Mamba替身，尚无模块二分割结果。
 > 阅读入口：[项目文档导航](项目文档导航.md)。本文件是工作计划主版本；具体路径、阶段任务和记录见第八节。
 > 已确认决策：主实验各组统一保留当前官方MHA实现。研究主线仍为两个模块、双模块联合及CT/MR验证；未决实现方案与候选对比方法不得当作已经完成的决定。
@@ -15,6 +15,7 @@
 | 两个模块分别研究什么 | 第一节与第三节3.2、3.3 |
 | 训练、推理和评价哪些设置保持一致 | 第三节3.5统一实验协议 |
 | A/F/C/D/E分别是什么、为什么要比较 | 第五节5.1实验编号与比较关系 |
+| 原定对比论文有哪些、哪些实测、哪些引用 | 第五节5.2.1逐篇论文清单、5.2.2执行安排与5.2.3结果表规则 |
 | 哪些已经完成、哪些是补充或待确认任务 | 第四节各阶段状态；第七节验收清单 |
 
 **编号规则**：“阶段一、阶段二……”表示工作顺序；“2.1、2.2……”表示阶段内任务；“A、F、C……”表示模型配置，不表示阶段或执行次序。F是无边界Block-AttnRes对照，C是你的完整模块一。开发F所需的基础代码属于阶段二2.1，不是另一个研究方向。
@@ -76,7 +77,7 @@ Hetero-UNet（NeurIPS 2024）采用CNN编码器与解码器，在瓶颈加入由
 | Attention Residuals（Kimi Team / Moonshot AI） | 首版2026-03-16；针对LLM深度聚合，提出Full与Block AttnRes | 分组方式、历史表示、归一化和初始化的准确实现及视觉任务适配 |
 | XAttnRes | 首版2026-03-28；跨编码/解码阶段历史池，进行空间对齐与通道投影；报告无skip版本的实验 | 完整论文、作者实现及边界相关设计；迁移Hetero-UNet后的效果 |
 | nnU-Net、SegResNet、UNETR、Swin-UNETR、U-Mamba | 传统及相关架构候选基线；U-Mamba包含CNN与Mamba | 选择具体版本并对齐训练和评估，不将U-Mamba标为纯Mamba架构 |
-| SAMA-UNet、Mamba-HoME、DAMamba、DM-SegNet、EViM、MambaCAFU、TranSamba、DAMamba-UNet3D、BiSegMamba | 继承自旧计划的待核验候选清单 | 逐项核验名称、论文、年份/会议、数据协议、指标、作者代码及许可；核验前不标为已确认SOTA |
+| SAMA-UNet、Mamba-HoME、DAMamba、DM-SegNet、EViM、MambaCAFU、TranSamba、DAMamba-UNet3D、BiSegMamba | 已恢复逐篇论文入口，见5.2.1；本次核对标题、首发年份和主要任务 | 数据协议、完整实现、权重、许可及本项目适配仍需逐项核验；有论文不等于已复现或可直接排名 |
 
 旧稿中SAMA-UNet的85.38%、DM-SegNet的85.44%、参数量及部分会议归属未在本次修订中逐项核实，暂不作为确定事实或比较依据。候选清单也不等于已完成调研或复现。
 
@@ -329,20 +330,55 @@ MR主验证与原横向候选目标保留；具体方法版本、MR组数和资�
 
 B不是等权残差缺陷的直接证明；需记录模块顺序、层数、归一化和参数/训练预算。C对F若同时增加辅助边界监督，还需控制监督项的独立贡献。
 
-### 5.2 横向对比清单与范围状态
+### 5.2 横向对比实验：逐篇论文清单与执行安排
 
-| 类别 | 保留的原候选方法 | 当前任务 |
+**恢复说明（2026-11-03）**：v1.3的阶段五原有逐模型对比表，后续整理将其压缩为分类候选清单，导致论文与具体任务不够显眼。本次恢复逐篇条目及链接，保留原候选范围；不把“尚待适配”误写为已经取消。年份优先指论文首个版本，正式发表年份单独注明；以下链接用于追溯文献，不能代替数据协议和代码审计。
+
+#### 5.2.1 原计划对比论文：逐篇保留
+
+| 方法 | 论文与年份/入口 | 与本研究比较的目的 | 当前状态及需核验事项 |
+|---|---|---|---|
+| **nnU-Net** | [nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation](https://www.nature.com/articles/s41592-020-01008-z)，2021 | 标准CNN分割参照，判断相对强基线的收益 | 原计划保留；选定nnU-Net版本、配置及训练预算，未在本项目完成横向实验 |
+| **SegResNet** | [3D MRI brain tumor segmentation using autoencoder regularization](https://arxiv.org/abs/1810.11654)，2018；本项目需登记所用SegResNet实现与原论文关系 | 残差CNN参照 | 原计划保留；明确是否使用VAE辅助分支，不能把不同变体当同一模型 |
+| **UNETR** | [UNETR: Transformers for 3D Medical Image Segmentation](https://arxiv.org/abs/2103.10504)，2021预印本、2022会议版本 | 3D Transformer参照 | 原计划保留；核对输入分辨率、预训练和内存要求 |
+| **Swin-UNETR** | [Swin UNETR: Swin Transformers for Semantic Segmentation of Brain Tumors in MRI Images](https://arxiv.org/abs/2201.01266)，2022 | 层次化Transformer参照 | 原计划保留；核对具体实现、预训练及腹部任务适配 |
+| **U-Mamba** | [U-Mamba: Enhancing Long-range Dependency for Biomedical Image Segmentation](https://arxiv.org/abs/2401.04722)，2024 | CNN–SSM混合参照，与Hetero-UNet相关 | 原计划保留；明确Bot或Enc版本；不能称纯Mamba，也不能混用不同版本成绩 |
+| **Hetero-UNet** | Hetero-UNet: Heterogeneous Transformer with Mamba for Medical Image Segmentation，2024；本地原论文见第九节 | 直接改造基座，作为A | **已自行训练并实测**：86.7638% DSC、90.5529% NSD；原论文86.7%/90.5%单独注明为报告值 |
+| **SAMA-UNet** | [SAMA-UNet: Enhancing Medical Image Segmentation with Self-Adaptive Mamba-Like Attention and Causal-Resonance Learning](https://arxiv.org/abs/2505.15234)，2025；[作者代码](https://github.com/sqbqamar/SAMA-UNet) | 原定重点候选，比较Mamba-like注意力及跨尺度连接方案 | 保留重点复现目标；需核对2D/3D、标签、数据划分和训练成本；BTCV引用成绩不直接与本项目排名 |
+| **Mamba-HoME** | [Mamba Goes HoME: Hierarchical Soft Mixture-of-Experts for 3D Medical Image Segmentation](https://arxiv.org/abs/2507.06363)，2025首发；[作者代码，标注NeurIPS 2025](https://github.com/gmum/MambaHoME) | 原定重点候选，比较分层专家路由与本项目聚合 | 保留重点复现目标；作者方案涉及外部有监督预训练，须区分从头训练与预训练资源，不直接套用公开权重排名 |
+| **DAMamba** | [DAMamba: Vision State Space Model with Dynamic Adaptive Scan](https://arxiv.org/abs/2502.12627)，2025 | 原定动态扫描候选，考察不同长程建模路线 | 原名保留；这是通用视觉骨干，不是现成的腹部3D分割器。先确认医学适配定义，不把DAMamba-UNet3D当成同一方法 |
+| **XAttnRes** | [XAttnRes: Cross-Stage Attention Residuals for Medical Image Segmentation](https://arxiv.org/abs/2604.03297)，首发2026-03-28 | **模块一的直接相关方法，也是原计划重点对比** | 保留直接比较目标；核对作者实现后定义Hetero-UNet适配G，以及G+模块二的H；不能预设C/E一定优于G/H |
+| **DM-SegNet** | [DM-SegNet: Dual-Mamba Architecture for 3D Medical Image Segmentation with Global Context Modeling](https://arxiv.org/abs/2506.05297)，**2025首发** | 双Mamba及3D解码候选 | 原计划保留；纠正旧稿“2026.08首发”说法；代码可运行性及训练协议待核验，Synapse报告值不直接排名 |
+| **EViM相关混合模型** | [An Efficient Vision Mamba–Transformer Hybrid Architecture for Abdominal Multi-Organ Image Segmentation](https://pmc.ncbi.nlm.nih.gov/articles/PMC12610622/)，2025 | 原定Mamba–Transformer混合候选 | 恢复论文全名；EViM在该文中是模块名，不能只凭缩写确定比较模型。核对代码和体积/切片协议 |
+| **MambaCAFU** | [MambaCAFU: Hybrid Multi-Scale and Multi-Attention Model with Mamba-Based Fusion for Medical Image Segmentation](https://arxiv.org/abs/2510.03786)，2025 | 原定多分支与跨尺度注意力融合候选 | 原计划保留；原文曾说明代码拟公开，当前完整代码/权重状态及本项目适配需另核验，不直接标为已复现 |
+| **TranSamba** | [Hybrid Transformer-Mamba Architecture for Weakly Supervised Volumetric Medical Segmentation](https://arxiv.org/abs/2512.10353)，2025首发 | 原定跨平面Transformer–Mamba候选 | 原计划保留；**弱监督任务与本项目全监督不同**，先作为相关文献，不将原文成绩列入同协议主排名；如要实测须明确另立的适配协议 |
+| **DAMamba-UNet3D** | [DAMamba-UNet3D: A Parameter-Efficient Mamba State Space U-Net with Dynamic Adaptive Scan for 3D Medical Image Segmentation](https://arxiv.org/abs/2607.22718)，2026 | 原补充清单中的动态扫描3D医学模型 | 保留；需核验BraTS到腹部13器官的适配及作者代码，不混淆为上面的通用DAMamba |
+| **BiSegMamba** | [BiSegMamba: Efficient Bidirectional Tri-Oriented Mamba for 3D Medical Image Segmentation](https://arxiv.org/abs/2605.30972)，2026 | 原补充清单中的双向多方向建模候选 | 保留；核验具体版本、腹部数据划分和计算成本后决定实测范围 |
+
+**方法来源对照**：无边界Block-AttnRes为已实现的F，是受控适配，不是独立外部完整架构；对应[Attention Residuals原文](https://arxiv.org/abs/2603.15031)和[官方代码](https://github.com/MoonshotAI/Attention-Residuals)。A/F/C/F-aux的完整结果直接复用已归档材料，D/E按阶段三、四补齐，不因恢复对比表而重跑已有首轮实验。
+
+#### 5.2.2 复现、引用与执行顺序
+
+| 层级 | 方法/任务 | 安排及交付物 |
 |---|---|---|
-| CNN参照 | nnU-Net、SegResNet | 核对具体版本与同数据/评价配置 |
-| Transformer参照 | UNETR、Swin-UNETR | 核对3D任务适配与训练设置 |
-| 相关基座 | U-Mamba、Hetero-UNet | 对齐任务；U-Mamba为CNN与Mamba混合，不标纯Mamba |
-| 直接相关聚合 | 无边界Block-AttnRes、XAttnRes | 保留与核心贡献直接相关的比较 |
-| 近期候选 | SAMA-UNet、Mamba-HoME、DAMamba、DM-SegNet、EViM、MambaCAFU、TranSamba | 逐项核验论文、作者代码、数据协议、指标与开源状态 |
-| 补充文献候选 | DAMamba-UNet3D、BiSegMamba等原文献清单 | 作为调研对象保留，核验后判断是否需要实现 |
+| 已完成、持续复用 | A/F/C/F-aux | 逐病例DSC/NSD、权重与记录已有，不以原论文数字替代自行训练的A |
+| 当前主线 | D、E | 用户租好服务器后先真实CUDA短程，再D独立实验及E联合实验；本机编码完成不等于训练完成 |
+| 核心参照，优先登记实测 | nnU-Net、U-Mamba；UNETR/Swin-UNETR及SegResNet保留在经典参照矩阵 | 逐项登记版本、官方实现、数据适配、从头/预训练、预计GPU小时与实测/引用方式，不在本次自动启动训练或静默删项 |
+| 直接相关机制对比 | XAttnRes的G，及相关的H；F已完成 | 保留原直接对比目标，先明确适配是否忠实、模块差异和开销，再按资源执行，比较结果允许正负 |
+| 原定重点候选 | SAMA-UNet、Mamba-HoME、DAMamba | 保留重点核验/复现目标；适配、预训练或任务不一致时明确记录处理方案，不把核验困难默认为取消 |
+| 原定扩展/文献候选 | DM-SegNet、EViM、MambaCAFU、TranSamba、DAMamba-UNet3D、BiSegMamba | 均保留逐篇条目；适合者登记实测，无开源或任务不一致者保留文献引用及理由。最终范围形成清单，不靠数量凑排名 |
 
-**范围规则**：原计划“12–14个基线”保留为早期规模参考，不是已经完成或不可改变的最终数量。候选名单不因优先级整理被删除；正式哪些必须复现、哪些引用、哪些不适配，需在阶段五任务5.1中逐项核验并记录依据。先核心证据、再扩展方法只是排程建议，不代表研究方向变化。
+自行复现是指由本项目实际运行，不要求在本机长训练；本机改代码和查错，租用服务器训练/推理。原计划“12–14个基线”是早期规模参考，本表含补充条目共16项，不代表本次已经承诺或完成16次完整训练。删减候选、取消原重点对比或替换方法需明确记录范围变更，不能因为排程压缩而消失。
 
-同一数据集名称也须核对病例划分和器官标签。BTCV、Synapse与本项目Abdomen的论文数字不能直接排名；不同协议的引用结果另表标注，不混为同协议实测。
+对照执行登记至少包含：论文链接、代码提交、模型变体、输入维度、训练/开发/测试病例、预训练资源、训练预算、推理配置、评价脚本、来源类型、运行状态及预计GPU小时。现阶段不要求把所有外部方法先跑完才能进行D/E。
+
+#### 5.2.3 论文结果表与评价规则
+
+1. **统一协议实测表**：使用本项目训练/测试病例和同一DSC/NSD规则；记录各架构必要的输入、训练、预处理及预训练差异。不能为了强行相同超参破坏外部方法的有效实现，也不能隐瞒额外训练资源。
+2. **文献报告结果表**：注明“原论文报告”，列出数据集、划分、标签数、2D/3D、指标定义及来源；不可比处明确标注。BTCV、Synapse与本项目Abdomen即使都是腹部CT也不能直接排名。
+3. **同基座消融表**：A/F/C/F-aux/D/E/G/H的含义不变；主实验继续按3.5冻结协议。外部方法不要求加入本项目MHA设置。
+4. **资源与可视化**：统一硬件/精度/输入条件记录参数、显存、训练及病例推理耗时；FLOPs注明自定义算子覆盖。报告全部器官DSC/NSD，并重点分析预先确定的小器官、边界和失败例，不预设本文一定占优。
+5. **模块二的直接相关文献补充**：[Attention U-Net](https://arxiv.org/abs/1804.03999)、[UNet 3+](https://arxiv.org/abs/2004.08790)、[UCTransNet](https://arxiv.org/abs/2109.04335)、[ASFF](https://arxiv.org/abs/1911.09516)用于核对门控、跨尺度融合及空间自适应权重的已有设计。它们是新增的机制定位文献，不自动变成四个额外完整训练任务；需要的受控组件对比在内部开发划分登记。
 
 ### 5.3 必要控制与补充实验
 
@@ -517,6 +553,8 @@ B不是等权残差缺陷的直接证明；需记录模块顺序、层数、归�
 - [XAttnRes，arXiv:2604.03297](https://arxiv.org/abs/2604.03297)，首版2026-03-28。
 
 *创建日期：2026-09-09。*
+
+*v1.24（2026-11-03）：按用户要求恢复旧稿逐篇对比论文清单，将原经典/重点/扩展候选展开为16项并补论文入口、比较目的和状态，保留XAttnRes及G/H直接比较。区分实测、文献引用和同基座消融，纠正DM-SegNet首发年份及DAMamba/TranSamba任务属性。保留用户原有模块二架构图和说明，不改阶段、训练协议或启动实验。修改前文件见output/document_backups/comparison_restore_2026-11-03/。*
 
 *v1.23（2026-11-03）：按用户要求在本机实现模块二D及联合E入口，记录相邻尺度动态融合与初始化；7项新增测试、D/E×2D/3D框架检查及全套128项回归通过（1项跳过）。CPU Mamba替身不代表真实CUDA验收；不连接服务器、不开展正式训练。具体修改与原始小型凭据见Hetero-UNet/docs/stage3/。*
 
