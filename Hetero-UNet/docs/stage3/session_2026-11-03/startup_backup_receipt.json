@@ -1,0 +1,9 @@
+{
+  "startup.tar": {
+    "remote": "oss://backup/stage3_20261103/D_E/startup.tar",
+    "bytes": 3123200,
+    "sha256": "dbeed47a3629840ca1ea3da477e5b3d60acd2dc69be432208bccdde172e32862",
+    "roundtrip_passed": true,
+    "verified_utc": "2026-11-03T08:07:17.065627+00:00"
+  }
+}
