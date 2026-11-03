@@ -1,0 +1,33 @@
+{
+  "date": "2026-11-03",
+  "checks": {
+    "DSC_evaluation_section_identical": true,
+    "NSD_evaluation_section_identical": true,
+    "SurfaceDice_identical": true
+  },
+  "published_test_ids_match_project": true,
+  "test_count": 50,
+  "sources": {
+    "U-Mamba": "https://github.com/bowang-lab/U-Mamba",
+    "models": "https://drive.google.com/drive/folders/1rwfK_rzEXRB-cysYapmBnAmNUscADwj4",
+    "prediction_archive": "https://drive.google.com/file/d/1qlzTym3YdyCt3eR8J90h636it4cCDCt8/view"
+  },
+  "prediction_archive_downloaded": false,
+  "all_weights_loaded": false,
+  "all_GT_voxels_compared": false,
+  "source_sha256": {
+    "drive_initial_listing.json": "62931e2d0d74dcb9cf79bb71d5002db26f549f8fe6067b622f83863a1ad9f8e8",
+    "drive_models_and_CT.json": "2b8c346aab6c7f4c396be0b1e1d97c4dc147e1482c72e7c8fef5c65e5c89adc6",
+    "evim.xml": "eae8b92f7cc0bc48a6305c707ac620b00d28d8a164ee9b83d95ac17171393a74",
+    "hetero_page5.png": "fc1072da7c1fe65a2defb0f9335adf80e107471a7fd5efcd9f674b091ff3e7bf",
+    "hetero_page6.png": "3fc18a9a766aa00ea2cdd83738b2f313c13c981ba68bba71cb2502e1e21a5608",
+    "old_CT_listing.json": "4a0a4a734f5f7615c6ecc422b6d8858552d0de88cc50d94a1f2ae23e7474c9b8",
+    "public_artifact_discovery.json": "fa003b97056f5b4f30dc83bbcb0c0358e6d25dcc7bf9436c80696394a556fcb1",
+    "public_model_versions.json": "e03997705ffa3b718ea52bc0f03df55834c756fd217c6220f8d90e24fcf3359f",
+    "umamba_DSC.py": "cceabd9ba6b3e6b6c0a94c9ebe66f2de9d7c3f0e035a75e3a33c58e5a3cbb77b",
+    "umamba_NSD.py": "bff791c3bb397fa36ed76165773790be361d5597f3932c3ffcd4b2dea724c121",
+    "umamba_SurfaceDice.py": "27f0790c23fd9ea51c52fb8d308505e79cddb55881899936b64b9e59056bf3a5",
+    "umamba_table3.png": "a2ef00100c7813f82aaf8b66609d5bc0c1c9f2ce3f8fa88ec87bea007692dc67"
+  },
+  "local_original_pdf_sha256": "1988197ec01c17f1c745bcbed1bf6edad7f710a31db9a21963b42d245698b7f2"
+}
