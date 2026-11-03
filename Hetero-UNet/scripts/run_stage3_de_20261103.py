@@ -60,6 +60,14 @@ def restore():
     assert sha(records) == '096e11c3c0201930bd7bbd4eb88616d97cffed62846223394a4b11c89a4a316c'
     previous = WORK / 'previous'
     safe_tar(records, previous)
+    # Evaluation dependencies live in the separate external50 archive, not
+    # the final-records archive. Verify that package before importing metrics.
+    if not (previous / 'metrics_code').exists():
+        evaluation_archive = WORK / 'previous_evaluation.tar'
+        run(['oss', 'cp', 'oss://backup/stage2_20261029/F_aux/F_aux_external50_verified.tar',
+             evaluation_archive, '-f'], 'restore.log', timeout=1800)
+        assert sha(evaluation_archive) == 'c3a5f79a7bbd521c71648ee86866eb4dfcfcc76f75aa281db8cbdc54c4bf6ca2'
+        safe_tar(evaluation_archive, previous)
     for row in read(WORK / 'restore_objects.json'):
         target = WORK / Path(row['remote']).name
         state('restoring_data', object=row['remote'])
@@ -95,7 +103,7 @@ def restore():
     preprocessed = DATA / 'nnUNet_preprocessed/Dataset701_AbdomenCT/nnUNetPlans_3d_fullres'
     assert len(list(preprocessed.glob('*.npz'))) == len(list(preprocessed.glob('*.pkl'))) == 50
     shutil.copytree(PROJECT / 'umamba/nnunetv2', WORK / 'runtime/nnunetv2',
-                    ignore=shutil.ignore_patterns('__pycache__', '*.pyc'))
+                    ignore=shutil.ignore_patterns('__pycache__', '*.pyc'), dirs_exist_ok=True)
     shutil.copy2(previous / 'runtime/nnunetv2/inference/export_prediction.py',
                  WORK / 'runtime/nnunetv2/inference/export_prediction.py')
     assert sha(WORK / 'runtime/nnunetv2/inference/export_prediction.py') == original['evaluation']['low_memory_export_sha256']
