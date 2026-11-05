@@ -1,0 +1,35 @@
+{
+  "exported_count": 4,
+  "checked": [
+    {
+      "case": "FLARETs_0001.nii.gz",
+      "shape": [
+        512,
+        512,
+        406
+      ],
+      "spacing": [
+        0.8203120231628418,
+        0.8203120231628418,
+        1.25
+      ],
+      "shape_matches_gt": true,
+      "affine_matches_gt": true
+    },
+    {
+      "case": "FLARETs_0002.nii.gz",
+      "shape": [
+        512,
+        512,
+        171
+      ],
+      "spacing": [
+        0.8554689884185791,
+        0.8554689884185791,
+        2.5
+      ],
+      "shape_matches_gt": true,
+      "affine_matches_gt": true
+    }
+  ]
+}
