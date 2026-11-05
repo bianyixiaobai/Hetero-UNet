@@ -1,0 +1,16 @@
+{
+  "quarantined_AppleDouble": [
+    {
+      "file": "._FLARETs_0023_0000.nii.gz",
+      "bytes": 4096,
+      "sha256": "15e8f1d0f959725421d9d4c14bbd807728771248b52a63c4e6bc28908c34a0c5"
+    },
+    {
+      "file": "._FLARETs_0014_0000.nii.gz",
+      "bytes": 4096,
+      "sha256": "90ad10c1dd3b6fe6df06014f4594f84201d85b1e49f061d237323eb2c70642b0"
+    }
+  ],
+  "remaining_expected_images": 50,
+  "real_image_content_unchanged": true
+}

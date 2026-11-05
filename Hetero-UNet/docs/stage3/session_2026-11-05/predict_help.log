@@ -1,0 +1,66 @@
+
+#######################################################################
+Please cite the following paper when using nnU-Net:
+Isensee, F., Jaeger, P. F., Kohl, S. A., Petersen, J., & Maier-Hein, K. H. (2021). nnU-Net: a self-configuring method for deep learning-based biomedical image segmentation. Nature methods, 18(2), 203-211.
+#######################################################################
+
+usage: nnUNetv2_predict_from_modelfolder [-h] -i I -o O -m M [-f F [F ...]]
+                                         [-step_size STEP_SIZE]
+                                         [--disable_tta] [--verbose]
+                                         [--save_probabilities]
+                                         [--continue_prediction] [-chk CHK]
+                                         [-npp NPP] [-nps NPS]
+                                         [-prev_stage_predictions PREV_STAGE_PREDICTIONS]
+                                         [-device DEVICE]
+                                         [--disable_progress_bar]
+
+Use this to run inference with nnU-Net. This function is used when you want to
+manually specify a folder containing a trained nnU-Net model. This is useful
+when the nnunet environment variables (nnUNet_results) are not set.
+
+options:
+  -h, --help            show this help message and exit
+  -i I                  input folder. Remember to use the correct channel
+                        numberings for your files (_0000 etc). File endings
+                        must be the same as the training dataset!
+  -o O                  Output folder. If it does not exist it will be
+                        created. Predicted segmentations will have the same
+                        name as their source images.
+  -m M                  Folder in which the trained model is. Must have
+                        subfolders fold_X for the different folds you trained
+  -f F [F ...]          Specify the folds of the trained model that should be
+                        used for prediction. Default: (0, 1, 2, 3, 4)
+  -step_size STEP_SIZE  Step size for sliding window prediction. The larger it
+                        is the faster but less accurate the prediction.
+                        Default: 0.5. Cannot be larger than 1. We recommend
+                        the default.
+  --disable_tta         Set this flag to disable test time data augmentation
+                        in the form of mirroring. Faster, but less accurate
+                        inference. Not recommended.
+  --verbose             Set this if you like being talked to. You will have to
+                        be a good listener/reader.
+  --save_probabilities  Set this to export predicted class "probabilities".
+                        Required if you want to ensemble multiple
+                        configurations.
+  --continue_prediction, --c
+                        Continue an aborted previous prediction (will not
+                        overwrite existing files)
+  -chk CHK              Name of the checkpoint you want to use. Default:
+                        checkpoint_final.pth
+  -npp NPP              Number of processes used for preprocessing. More is
+                        not always better. Beware of out-of-RAM issues.
+                        Default: 3
+  -nps NPS              Number of processes used for segmentation export. More
+                        is not always better. Beware of out-of-RAM issues.
+                        Default: 3
+  -prev_stage_predictions PREV_STAGE_PREDICTIONS
+                        Folder containing the predictions of the previous
+                        stage. Required for cascaded models.
+  -device DEVICE        Use this to set the device the inference should run
+                        with. Available options are 'cuda' (GPU), 'cpu' (CPU)
+                        and 'mps' (Apple M1/M2). Do NOT use this to set which
+                        GPU ID! Use CUDA_VISIBLE_DEVICES=X nnUNetv2_predict
+                        [...] instead!
+  --disable_progress_bar
+                        Set this flag to disable progress bar. Recommended for
+                        HPC environments (non interactive jobs)

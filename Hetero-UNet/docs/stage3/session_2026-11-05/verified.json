@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "training_commit": "08218c634736a0123d8bfef4dc43235f9839932c",
+  "D_retrained": false,
+  "D_checkpoint_hashes_unchanged": true,
+  "source_fingerprints_match": true,
+  "entrypoint_metadata_repaired": true,
+  "recovery_script_sha256": "cb94e0335505334522794566565b0bab2543657e24c8e5281dd00f388974282f"
+}

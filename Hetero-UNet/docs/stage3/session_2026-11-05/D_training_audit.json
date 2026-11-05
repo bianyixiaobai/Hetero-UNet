@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "checkpoints": [
+    {
+      "name": "checkpoint_best.pth",
+      "epoch": 1000,
+      "sha256": "889e941b665b51dbac10321b3d6689ad9d4ccae37e0a94b7e0e9ea3674dc684d",
+      "bytes": 725112050
+    },
+    {
+      "name": "checkpoint_final.pth",
+      "epoch": 1000,
+      "sha256": "2629d2be2d8cb0266d2b6a6a1ad37a9374b582918101d058cc6d403893cd17cb",
+      "bytes": 725113134
+    }
+  ]
+}

@@ -80,6 +80,8 @@ def restore():
                 for member in archive.infolist():
                     parts = Path(member.filename).parts
                     assert not Path(member.filename).is_absolute() and '..' not in parts
+                    if any(p == '__MACOSX' or p.startswith('._') for p in parts):
+                        continue  # macOS resource forks are not NIfTI images.
                     if 'Dataset701_AbdomenCT' not in parts:
                         continue
                     relative = Path(*parts[parts.index('Dataset701_AbdomenCT'):])
@@ -126,6 +128,11 @@ def restore():
     assert protocol['shutdown_sha256'] == '30b9ea6f23173078ccfe57d9b15ffe8caf5ba1442477f32c2c170ea0e97771d7'
     write('protocol.json', protocol)
     run([sys.executable, '-m', 'pip', 'freeze'], 'environment.txt', env())
+    # PYTHONPATH is sufficient for training imports, but the console launcher
+    # also requires installed distribution metadata. Check the real entry point.
+    run([sys.executable, '-m', 'pip', 'install', '--no-deps', '--no-build-isolation',
+         '-e', PROJECT/'umamba'], 'package_registration.log', env(), 300)
+    run(['nnUNetv2_predict_from_modelfolder', '--help'], 'inference_entrypoint_check.log', env(True), 120)
     run([sys.executable, PROJECT/'scripts/check_stage3_cuda.py', '--plans',
          DATA/'nnUNet_preprocessed/Dataset701_AbdomenCT/nnUNetPlans.json', '--dataset-json',
          DATA/'nnUNet_preprocessed/Dataset701_AbdomenCT/dataset.json', '--output', WORK/'cuda_check'],

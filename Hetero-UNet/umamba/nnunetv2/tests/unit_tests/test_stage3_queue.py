@@ -40,4 +40,33 @@ class TestStage3Shutdown(unittest.TestCase):
         with self.assertRaises(AssertionError): self.gate(receipts=receipts)()
 
 
+class TestDRecovery(unittest.TestCase):
+    def setUp(self):
+        source=Path(__file__).resolve().parents[4]/'scripts/resume_stage3_after_D_20261105.py'
+        node=next(n for n in ast.parse(source.read_text(encoding='utf-8')).body
+                  if isinstance(n,ast.FunctionDef) and n.name=='validate_resume')
+        namespace={}
+        exec(compile(ast.Module(body=[node],type_ignores=[]),str(source),'exec'),namespace)
+        self.validate=namespace['validate_resume']
+        self.manifest={'status':'completed','arguments':{'model':'D'},'git':{'commit':'frozen'},'protocol':{'num_epochs':1000}}
+        self.protocol={'commit':'frozen'}
+        self.audit={'status':'passed','checkpoints':[{'name':n} for n in ['checkpoint_best.pth','checkpoint_final.pth']]}
+        self.receipts={'D_training.tar':{'roundtrip_passed':True}}
+
+    def test_completed_backed_up_D_is_eligible(self):
+        self.validate(self.manifest,self.protocol,self.audit,self.receipts)
+
+    def test_unfinished_D_is_rejected(self):
+        self.manifest['status']='training'
+        with self.assertRaises(AssertionError):self.validate(self.manifest,self.protocol,self.audit,self.receipts)
+
+    def test_wrong_source_is_rejected(self):
+        self.protocol['commit']='different'
+        with self.assertRaises(AssertionError):self.validate(self.manifest,self.protocol,self.audit,self.receipts)
+
+    def test_unverified_backup_is_rejected(self):
+        self.receipts['D_training.tar']['roundtrip_passed']=False
+        with self.assertRaises(AssertionError):self.validate(self.manifest,self.protocol,self.audit,self.receipts)
+
+
 if __name__=='__main__': unittest.main()
