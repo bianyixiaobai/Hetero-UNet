@@ -75,22 +75,19 @@ ND仍是多分支、多核大小对照，不能称为完全单感受野。R0为D
 
 ```bash
 # 只解析配置，不创建训练任务
-python scripts/run_stage3.py --model C-ND --results-root /hy-tmp/spatial_results --dry-run
 python scripts/run_stage3.py --model C-R0 --results-root /hy-tmp/spatial_results --dry-run
 
 # 真实Mamba/CUDA检查；PLANS和DATASET_JSON替换成核对后的原文件路径
-python scripts/check_spatial_cuda.py --plans PLANS --dataset-json DATASET_JSON --output /hy-tmp/spatial_cuda_check
+python scripts/check_spatial_cuda.py --model C-R0 --plans PLANS --dataset-json DATASET_JSON --output /hy-tmp/spatial_cuda_check
 
 # 原完整patch真实数据短程；输出自动带_smoke，与正式实验分开
-python scripts/run_stage3.py --model C-ND --results-root /hy-tmp/spatial_results --smoke
 python scripts/run_stage3.py --model C-R0 --results-root /hy-tmp/spatial_results --smoke
 
-# GPU及真实数据短程通过后，按ND→R0顺序从头正式训练
-python scripts/run_stage3.py --model C-ND --results-root /hy-tmp/spatial_results
+# GPU及真实数据短程通过后，正式从头训练 C+R0
 python scripts/run_stage3.py --model C-R0 --results-root /hy-tmp/spatial_results
 ```
 
-CUDA检查脚本已准备并通过语法检查，尚未运行。正式输出分别位于`stage3_C-ND_seed1234`和`stage3_C-R0_seed1234`；内部还包含dataset/Trainer/plans/configuration/fold目录。新组模型名在报告写作中为C+ND/C+R0，CLI使用C-ND/C-R0。
+CUDA检查脚本已准备并通过语法检查，尚未运行。本轮正式输出位于`stage3_C-R0_seed1234`，内部包含dataset/Trainer/plans/configuration/fold目录。C+ND 留作候选消融，由用户看过 C+R0 与 C 的比较结果后决定是否安排。
 
 如需续训，显式加`--continue`，只能恢复同一实验目录的检查点。已有正式权重时不带此标志会拒绝覆盖；不允许将smoke检查点当正式初始化。训练启动器不自动运行外部50例评价、OSS上传或关机；这些流程按原评价规则在部署时接入并独立核验。
 
@@ -102,7 +99,7 @@ CUDA检查脚本已准备并通过语法检查，尚未运行。正式输出分�
 - [x] 原CT空间块参数和卷积运算量匹配核对。
 - [ ] 服务器拉取GitHub交付版本，核对提交、环境与数据（等待用户通知）。
 - [ ] 真实GPU/AMP/原patch与真实数据短程验收。
-- [ ] 新增两组从头训练1000轮及原外部50例推理评价。
+- [ ] C+R0 从头训练1000轮及原外部50例推理评价。
 - [ ] 与已有C汇总比较、图表、OSS及本机完整归档。
 
 历史实验、权重、原始数据及评分脚本保留。本次更新前文档备份在`output/document_backups/2026-11-16_spatial_implementation/`。核心研究问题和三组实验定义继续遵循[选型及执行清单](模块二重新选型_近期方法与实验路线_2026-11-11.md)。

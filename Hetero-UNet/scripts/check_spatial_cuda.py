@@ -15,6 +15,8 @@ def main():
     parser.add_argument('--plans', required=True)
     parser.add_argument('--dataset-json', required=True)
     parser.add_argument('--output', required=True)
+    parser.add_argument('--model', choices=('C-ND', 'C-R0'),
+                        help='Check only this model. Omit to check both variants.')
     args = parser.parse_args()
     folder = Path(args.output).resolve()
     folder.mkdir(parents=True, exist_ok=True)
@@ -49,6 +51,8 @@ def main():
         ('C-ND', nnUNetTrainerMambaUNetBGSpatialND),
         ('C-R0', nnUNetTrainerMambaUNetBGSpatialR0),
     ):
+        if args.model is not None and name != args.model:
+            continue
         torch.manual_seed(1234)
         torch.cuda.manual_seed_all(1234)
         torch.cuda.reset_peak_memory_stats()
