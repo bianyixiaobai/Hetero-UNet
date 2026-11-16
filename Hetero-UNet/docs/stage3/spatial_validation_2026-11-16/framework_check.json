@@ -1,0 +1,53 @@
+{
+  "scope": "synthetic CPU integration with actual nnU-Net; explicit Mamba/W&B doubles",
+  "torch": "2.12.0+cpu",
+  "cuda_available": false,
+  "runs": [
+    {
+      "trainer": "nnUNetTrainerMambaUNetBGSpatialND",
+      "variant": "ND",
+      "added_parameters": 1760,
+      "inherited_C_initial_weights_identical": true,
+      "ND_R0_initial_weights_identical": true,
+      "optimizer_coverage": true,
+      "decoder_location_verified": true,
+      "train_loss": 1.327460527420044,
+      "boundary_loss": 0.8004233241081238,
+      "validation_loss": 1.2223320007324219,
+      "checkpoint_eval_exact": true,
+      "momentum_and_next_update_exact": true,
+      "resume_lr": 0.00995498872932069,
+      "sliding_overlap_padding_and_raw_array_pipeline": "passed",
+      "constant_logits_gaussian_coverage": "passed",
+      "mamba": "explicit_CPU_test_double",
+      "status": "passed"
+    },
+    {
+      "trainer": "nnUNetTrainerMambaUNetBGSpatialR0",
+      "variant": "R0",
+      "added_parameters": 1760,
+      "inherited_C_initial_weights_identical": true,
+      "ND_R0_initial_weights_identical": true,
+      "optimizer_coverage": true,
+      "decoder_location_verified": true,
+      "train_loss": 1.3254127502441406,
+      "boundary_loss": 0.8004233241081238,
+      "validation_loss": 1.2205511331558228,
+      "checkpoint_eval_exact": true,
+      "momentum_and_next_update_exact": true,
+      "resume_lr": 0.00995498872932069,
+      "sliding_overlap_padding_and_raw_array_pipeline": "passed",
+      "constant_logits_gaussian_coverage": "passed",
+      "mamba": "explicit_CPU_test_double",
+      "status": "passed"
+    }
+  ],
+  "not_tested": [
+    "real Mamba CUDA",
+    "AMP GradScaler restoration",
+    "full-patch GPU memory",
+    "clinical CT file export and 50-case evaluation",
+    "worker RNG exact resume",
+    "efficacy"
+  ]
+}

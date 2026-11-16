@@ -1,0 +1,120 @@
+{
+  "source": "C_seed1234_final.tar / fold_all/stage2_run.json and plans.json",
+  "protocol": {
+    "scope": "frozen_CT701",
+    "frozen_ct_enforced": true,
+    "eligible_for_frozen_CT701_comparison": true,
+    "required_physical_batch_size": 2,
+    "required_patch_size": [
+      40,
+      224,
+      192
+    ],
+    "trainer": "nnUNetTrainerMambaUNetBGBlockAttnRes",
+    "seed": 1234,
+    "num_epochs": 1000,
+    "train_iterations_per_epoch": 250,
+    "validation_iterations_per_epoch": 50,
+    "batch_size": 2,
+    "patch_size": [
+      40,
+      224,
+      192
+    ],
+    "initial_lr": 0.01,
+    "mha_batch_first": false,
+    "physical_batch_must_match_across_models": true,
+    "checkpoint_selection_for_external_evaluation": "checkpoint_best.pth",
+    "full_volume_validation_requested": false,
+    "epoch_validation_remains_enabled": true,
+    "external_50_evaluation": "Separate inference/DSC/NSD step; not run by this launcher"
+  },
+  "plans_canonical_sha256": "3202aa129561626f3de76c51c418bd01c52602fc3933b955316ca41764dd4ea1",
+  "dataset_canonical_sha256": "b98217bc192bd80f2b7c3aae780479554a7d5b15bea5600eb66087131b1bf90e",
+  "inherited_source_checks": [
+    {
+      "path": "scripts/run_stage2.py",
+      "archived_sha256": "1c745c07648148df7e03de2350d8a685b4fb1c21db0e52b47abfb16f65f28180",
+      "raw_match": true,
+      "lf_match": true
+    },
+    {
+      "path": "umamba/nnunetv2/paths.py",
+      "archived_sha256": "2bd0ec0fc718548611fa81fcec5ae4b98f83163c9d4bbf2dca8550b563c9f5d3",
+      "raw_match": false,
+      "lf_match": true
+    },
+    {
+      "path": "umamba/nnunetv2/configuration.py",
+      "archived_sha256": "c62f73b1bc1111b0bc9c3dfe5c8d1a481047bbb2c128b6017ede97da2af17beb",
+      "raw_match": false,
+      "lf_match": true
+    },
+    {
+      "path": "umamba/nnunetv2/nets/MambaUNet.py",
+      "archived_sha256": "63d490b95d7026978ec606e08f9b1e05d68be19a260e7dda824d110be2352fd7",
+      "raw_match": false,
+      "lf_match": true
+    },
+    {
+      "path": "umamba/nnunetv2/nets/MambaUNetAttnRes.py",
+      "archived_sha256": "635bc8dd2549fc5683f91e4217fb4b143996127214a6245a139c13f3f0b59dd4",
+      "raw_match": true,
+      "lf_match": true
+    },
+    {
+      "path": "umamba/nnunetv2/nets/block_attention_residuals.py",
+      "archived_sha256": "c2ae3ae48c692c752ffd30194e8c16737ad3caa6f2c62c6575fd25302c804195",
+      "raw_match": true,
+      "lf_match": true
+    },
+    {
+      "path": "umamba/nnunetv2/nets/boundary_prior.py",
+      "archived_sha256": "7975887abf86ec942c608e811524158cb43a6d6e01bdc9ddd9b956d7d0266872",
+      "raw_match": true,
+      "lf_match": true
+    },
+    {
+      "path": "umamba/nnunetv2/training/loss/boundary.py",
+      "archived_sha256": "0ad250573b7d41e613b419955e18fcf35c16febc29da1fc3f58faf2809911b88",
+      "raw_match": true,
+      "lf_match": true
+    },
+    {
+      "path": "umamba/nnunetv2/training/loss/segmentation_boundary.py",
+      "archived_sha256": "0b873abf7a647fb096cfc750e4c3aa717e62901744cf25197547ae53e0e21d57",
+      "raw_match": true,
+      "lf_match": true
+    },
+    {
+      "path": "umamba/nnunetv2/training/lr_scheduler/polylr.py",
+      "archived_sha256": "db00fdf7e5267ffbf05f6dfc7939c92beff31adeb0043efe51a9e66dd0fba4a1",
+      "raw_match": false,
+      "lf_match": true
+    },
+    {
+      "path": "umamba/nnunetv2/training/nnUNetTrainer/nnUNetTrainerMambaUNet.py",
+      "archived_sha256": "0bf98eda0d4168b93a957d1f7de62365649571a3688b17af6878706537d44eb5",
+      "raw_match": false,
+      "lf_match": true
+    },
+    {
+      "path": "umamba/nnunetv2/training/nnUNetTrainer/nnUNetTrainer.py",
+      "archived_sha256": "f6bda5eef242a0295c480dbe7f3ac054a21b8a263762bb51f30b0085e3726dd5",
+      "raw_match": false,
+      "lf_match": true
+    },
+    {
+      "path": "umamba/nnunetv2/training/nnUNetTrainer/nnUNetTrainerMambaUNetAttnRes.py",
+      "archived_sha256": "6b1307857eaf0104e987f20544001d99e038a11f263f8bee2890dd234d0db0a6",
+      "raw_match": true,
+      "lf_match": true
+    },
+    {
+      "path": "umamba/nnunetv2/inference/predict_from_raw_data.py",
+      "archived_sha256": "d89799d3da89c754cd9a78c1c29a0065a5f61ad4862f1b8c2c6a28fe1586636b",
+      "raw_match": false,
+      "lf_match": true
+    }
+  ]
+}

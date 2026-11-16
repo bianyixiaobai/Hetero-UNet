@@ -1,0 +1,20 @@
+{
+  "date": "2026-11-16",
+  "status": "local implementation and CPU checks passed; GPU pending",
+  "files": {
+    "umamba/nnunetv2/nets/spatial_receptive_block.py": "c0777f0d8d6ffa93ad72427154b2cb208d8d382959cc59e4240249caf9e5de18",
+    "umamba/nnunetv2/nets/MambaUNetSpatialRefinement.py": "6fa3d3cd8e3e114bf7386ea4f6adbed9bcebcd26d507f8d37696ccb8c9b3036e",
+    "umamba/nnunetv2/training/nnUNetTrainer/nnUNetTrainerMambaUNetSpatialRefinement.py": "499244b0de1cf641cd638d78e1ab582fb4a74bb35cac065e082d1346c75b42f0",
+    "scripts/run_stage3.py": "9497dbdb0496b053638124535c628cb76213f8844c93b18133e53abae388c3b9",
+    "scripts/check_spatial_framework.py": "02efdd4479872064e56192c02ccd3628a216fb7698b335091675faf00e08bbb7",
+    "scripts/check_spatial_cuda.py": "c1fcb2bdc0ac6f4bc37778836fc7f4c2bf4e28d3e4bbd382650a641cf109d596",
+    "scripts/audit_spatial_local.py": "eea781cc5a4a470a4256bdd829bfdd1d12bfd0afc245076ecd57d99151baafc9",
+    "umamba/nnunetv2/tests/unit_tests/test_spatial_receptive_block.py": "f15e4d60ed0dfb2064cd75e07efdc8cf0efaff4c75f496ab36c29a9314f62af1",
+    "docs/stage3/SPATIAL_IMPLEMENTATION_2026-11-16.md": "c4de3df92a9aaa39e5037a4efdc328e25f58f2b8b98bb547a43da78762f893da",
+    "docs/stage3/spatial_validation_2026-11-16/C_reference_contract.json": "60b047e209f36be8ad726d834397ba0899f973696381957ce70bc9514546bb17",
+    "docs/stage3/spatial_validation_2026-11-16/framework_check.json": "7cd7e71299fc8bc711c63b9404199abf9a871eede0bb2a717fb3301b5f117470",
+    "docs/stage3/spatial_validation_2026-11-16/local_validation_summary.json": "ea27e0e40fb1385b6820d777a6343fa1407a852e180b920fbdf7ae38829eea71",
+    "docs/stage3/SPATIAL_GITHUB_HANDOFF_2026-11-16.md": "843652080cefb6325bcfe480c32f2a17a473bb8653a9082e429a10542a9b8b48"
+  },
+  "hash_normalization": "file bytes with CRLF normalized to LF; portable across Windows/Linux checkouts"
+}

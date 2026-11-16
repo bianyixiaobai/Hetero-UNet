@@ -23,6 +23,8 @@ from uuid import uuid4
 TRAINERS = {
     "D": "nnUNetTrainerMambaUNetMultiScaleSkip",
     "E": "nnUNetTrainerMambaUNetBGMultiScaleSkip",
+    "C-ND": "nnUNetTrainerMambaUNetBGSpatialND",
+    "C-R0": "nnUNetTrainerMambaUNetBGSpatialR0",
 }
 
 FROZEN_CT_PATCH = (40, 224, 192)
@@ -100,6 +102,13 @@ def build_parser():
 def parse_args(argv=None, environ=None):
     parser = build_parser()
     args = parser.parse_args(argv)
+    if args.model in ('C-ND', 'C-R0'):
+        if (args.development or args.fold != 'all' or args.seed != 1234
+                or args.dataset not in ('701', 'Dataset701_AbdomenCT')
+                or args.configuration != '3d_fullres' or args.plans != 'nnUNetPlans'):
+            parser.error('C-ND/C-R0 use original CT701, fold all, seed1234, nnUNetPlans/3d_fullres; no development split')
+        # C's archived run skipped the redundant full-volume train-set export.
+        args.skip_final_validation = True
     if args.fold != "all" and not args.development:
         parser.error("numeric folds require --development; formal experiments use --fold all")
     if is_ct701_dataset(args.dataset) and not args.development and args.configuration != "3d_fullres":
@@ -195,6 +204,10 @@ def experiment_fingerprints(args, trainer, source_root):
     for name in names:
         file = source_root / "nnunetv2" / name
         code["umamba/nnunetv2/" + name] = sha256_file(file)
+    if args.model in ('C-ND', 'C-R0'):
+        for name in ('nets/spatial_receptive_block.py', 'nets/MambaUNetSpatialRefinement.py',
+                     'training/nnUNetTrainer/nnUNetTrainerMambaUNetSpatialRefinement.py'):
+            code['umamba/nnunetv2/' + name] = sha256_file(source_root / 'nnunetv2' / name)
     descriptors = {}
     base = Path(trainer.preprocessed_dataset_folder_base)
     for name in (args.plans + ".json", "dataset.json", "splits_final.json"):
@@ -213,6 +226,38 @@ def checkpoint_for_resume(output_folder):
     raise FileNotFoundError(
         f"--continue requested, but no final/latest/best checkpoint exists in {output_folder}"
     )
+
+
+def validate_spatial_reference(args, trainer, project_root):
+    """Fail closed on changed C plans, inherited code or training defaults.
+
+    Called BEFORE smoke overrides. LF normalization allows Windows checkouts.
+    Does not assert that raw images match: data hashes need deployment audit.
+    """
+    contract_path = project_root / 'docs/stage3/spatial_validation_2026-11-16/C_reference_contract.json'
+    contract = json.loads(contract_path.read_text(encoding='utf-8'))
+    canonical = lambda obj: hashlib.sha256(
+        json.dumps(obj, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+    errors = []
+    for name, obj in [('plans', trainer.plans_manager.plans), ('dataset', trainer.dataset_json)]:
+        if canonical(obj) != contract[name + '_canonical_sha256']:
+            errors.append(name + ' differs from archived C')
+    for item in contract['inherited_source_checks']:
+        content = (project_root / item['path']).read_bytes().replace(b'\r\n', b'\n')
+        if hashlib.sha256(content).hexdigest() != item['archived_sha256']:
+            errors.append('inherited source changed: ' + item['path'])
+    expected = {'num_epochs': 1000, 'num_iterations_per_epoch': 250,
+                'num_val_iterations_per_epoch': 50, 'initial_lr': 0.01,
+                'group_size': 3, 'boundary_hidden_channels': 8,
+                'boundary_loss_weight': 0.1, 'boundary_guidance': True,
+                'auxiliary_boundary': True}
+    for name, value in expected.items():
+        if getattr(trainer, name) != value:
+            errors.append(name + ' differs from C')
+    if errors:
+        raise ValueError('C reference mismatch: ' + '; '.join(errors))
+    return {'reference_contract_sha256': sha256_file(contract_path),
+            'C_reference_matched': True, 'new_training_from_scratch_unless_resume': True}
 
 
 def git_metadata(repository):
@@ -295,6 +340,8 @@ def run_experiment(args):
         args.plans, args.use_compressed, device=torch.device(args.device),
     )
     frozen_protocol = validate_frozen_ct_protocol(args, trainer)
+    if args.model in ('C-ND', 'C-R0'):
+        frozen_protocol.update(validate_spatial_reference(args, trainer, source_root.parent))
     validate_results_location(args.effective_results_root, trainer.output_folder)
     folder = Path(trainer.output_folder)
     folder.mkdir(parents=True, exist_ok=True)

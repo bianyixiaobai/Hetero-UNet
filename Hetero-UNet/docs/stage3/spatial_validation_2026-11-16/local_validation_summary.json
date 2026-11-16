@@ -1,0 +1,103 @@
+{
+  "date": "2026-11-16",
+  "C_archive_sha256": "1e11f84070920cc00399d66f9ad3d9991e926bf37713c0964f9acc4b412c6937",
+  "archive_receipt_match": true,
+  "checkpoints": [
+    {
+      "member": "nnUNetTrainerMambaUNetBGBlockAttnRes__nnUNetPlans__3d_fullres/fold_all/checkpoint_best.pth",
+      "bytes": 724675404,
+      "sha256": "675dec5bba1bb46b5fbc611676dc710a377350357ba40579816dbbf15fc22a71"
+    },
+    {
+      "member": "nnUNetTrainerMambaUNetBGBlockAttnRes__nnUNetPlans__3d_fullres/fold_all/checkpoint_final.pth",
+      "bytes": 724683358,
+      "sha256": "233fd553294770b38ff005872f2acd2853b72bb9d6ee7de2e13357ab1902b16e"
+    }
+  ],
+  "C_protocol": {
+    "scope": "frozen_CT701",
+    "frozen_ct_enforced": true,
+    "eligible_for_frozen_CT701_comparison": true,
+    "required_physical_batch_size": 2,
+    "required_patch_size": [
+      40,
+      224,
+      192
+    ],
+    "trainer": "nnUNetTrainerMambaUNetBGBlockAttnRes",
+    "seed": 1234,
+    "num_epochs": 1000,
+    "train_iterations_per_epoch": 250,
+    "validation_iterations_per_epoch": 50,
+    "batch_size": 2,
+    "patch_size": [
+      40,
+      224,
+      192
+    ],
+    "initial_lr": 0.01,
+    "mha_batch_first": false,
+    "physical_batch_must_match_across_models": true,
+    "checkpoint_selection_for_external_evaluation": "checkpoint_best.pth",
+    "full_volume_validation_requested": false,
+    "epoch_validation_remains_enabled": true,
+    "external_50_evaluation": "Separate inference/DSC/NSD step; not run by this launcher"
+  },
+  "C_module_config": {
+    "trainer": "nnUNetTrainerMambaUNetBGBlockAttnRes",
+    "group_size": 3,
+    "grouping_unit": "complete_TransMamba_layer",
+    "boundary_guidance": true,
+    "auxiliary_boundary": true,
+    "boundary_hidden_channels": 8,
+    "boundary_loss_weight": 0.1,
+    "boundary_target": "two_sided_4_or_6_connected_semantic_label_interfaces",
+    "mha_batch_first": false,
+    "epochs": 1000,
+    "batch_size": 2,
+    "patch_size": [
+      40,
+      224,
+      192
+    ],
+    "torch_compile": false
+  },
+  "block_profiles": [
+    {
+      "variant": "ND",
+      "input_shape": [
+        2,
+        320,
+        5,
+        14,
+        12
+      ],
+      "parameters": 327040,
+      "conv_MACs_batch2": 545664000,
+      "conv_FLOPs_batch2": 1091328000,
+      "scope": "added block only on CPU; not full network/GPU memory"
+    },
+    {
+      "variant": "R0",
+      "input_shape": [
+        2,
+        320,
+        5,
+        14,
+        12
+      ],
+      "parameters": 327040,
+      "conv_MACs_batch2": 545664000,
+      "conv_FLOPs_batch2": 1091328000,
+      "scope": "added block only on CPU; not full network/GPU memory"
+    }
+  ],
+  "C_reference_guard_positive_and_negative_checks": "passed",
+  "torch": "2.12.0+cpu",
+  "cuda_available": false,
+  "test_counts": {
+    "new_unit": 8,
+    "related_regression": 37,
+    "synthetic_framework_variants": 2
+  }
+}
