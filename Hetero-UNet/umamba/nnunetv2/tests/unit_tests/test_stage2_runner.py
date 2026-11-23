@@ -36,6 +36,19 @@ def temporary_test_folder():
 
 
 class TestStage2Parser(unittest.TestCase):
+    def test_amp_resume_check_is_isolated_and_uses_native_continue(self):
+        base = ["--model", "C-Contextrast", "--results-root", "."]
+        smoke = base + ["--smoke"]
+        split = smoke + ["--check-amp-resume"]
+        first, second = (runner.parse_args(args, environ={}) for args in (split, split + ["--continue"]))
+        self.assertTrue(second.continue_training)
+        self.assertEqual(first.effective_results_root, second.effective_results_root)
+        for other in (base, smoke):
+            self.assertNotEqual(first.effective_results_root, runner.parse_args(other, environ={}).effective_results_root)
+        for invalid in (base + ["--check-amp-resume"], split + ["--device", "cpu"], split + ["--dataset", "999"]):
+            with self.assertRaises(SystemExit), redirect_stderr(io.StringIO()):
+                runner.parse_args(invalid, environ={})
+
     def test_frozen_defaults_and_model_mapping(self):
         args = runner.parse_args(["--model", "F", "--results-root", "."], environ={})
         self.assertEqual(args.dataset, "701")

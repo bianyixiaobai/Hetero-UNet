@@ -5,6 +5,7 @@ from batchgenerators.utilities.file_and_folder_operations import join
 matplotlib.use('agg')
 import seaborn as sns
 import matplotlib.pyplot as plt
+from nnunetv2.utilities.json_export import fix_types_iterable
 
 
 class nnUNetLogger(object):
@@ -105,7 +106,8 @@ class nnUNetLogger(object):
         plt.close()
 
     def get_checkpoint(self):
-        return self.my_fantastic_logging
+        # Store numeric history as ordinary Python scalars for weights-only loading.
+        return {key: fix_types_iterable(values, list) for key, values in self.my_fantastic_logging.items()}
 
     def load_checkpoint(self, checkpoint: dict):
         self.my_fantastic_logging = checkpoint

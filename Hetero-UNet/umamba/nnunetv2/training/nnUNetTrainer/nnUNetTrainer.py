@@ -1076,7 +1076,7 @@ class nnUNetTrainer(object):
                     'optimizer_state': self.optimizer.state_dict(),
                     'grad_scaler_state': self.grad_scaler.state_dict() if self.grad_scaler is not None else None,
                     'logging': self.logger.get_checkpoint(),
-                    '_best_ema': self._best_ema,
+                    '_best_ema': None if self._best_ema is None else float(self._best_ema),
                     'current_epoch': self.current_epoch + 1,
                     'init_args': self.my_init_kwargs,
                     'trainer_name': self.__class__.__name__,

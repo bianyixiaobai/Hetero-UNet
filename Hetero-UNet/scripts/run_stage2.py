@@ -23,6 +23,7 @@ from uuid import uuid4
 TRAINERS = {
     "F": "nnUNetTrainerMambaUNetBlockAttnRes",
     "C": "nnUNetTrainerMambaUNetBGBlockAttnRes",
+    "C-Contextrast": "nnUNetTrainerMambaUNetCContextrast",
     "F-aux": "nnUNetTrainerMambaUNetBlockAttnResBoundarySupervision",
 }
 
@@ -86,6 +87,9 @@ def build_parser():
     parser.add_argument("--continue", dest="continue_training", action="store_true",
                         help="Resume an existing checkpoint in this exact experiment; "
                              "fail if none exists.")
+    parser.add_argument("--check-amp-resume", action="store_true",
+                        help="C-Contextrast CUDA smoke only: exit after checkpoint_latest, "
+                             "then repeat in a fresh process with --continue to verify an AMP update.")
     parser.add_argument("--skip-final-validation", action="store_true",
                         help="Skip the post-training full-volume validation export. "
                              "Epoch validation and best-checkpoint selection remain active. "
@@ -101,6 +105,10 @@ def build_parser():
 def parse_args(argv=None, environ=None):
     parser = build_parser()
     args = parser.parse_args(argv)
+    if args.check_amp_resume and (args.model != "C-Contextrast" or not args.smoke
+                                  or args.device != "cuda" or args.development
+                                  or not is_ct701_dataset(args.dataset)):
+        parser.error("--check-amp-resume requires CT701, --model C-Contextrast --smoke and CUDA")
     if args.fold != "all" and not args.development:
         parser.error("numeric folds require --development; formal experiments use --fold all")
     if is_ct701_dataset(args.dataset) and not args.development and args.configuration != "3d_fullres":
@@ -116,6 +124,7 @@ def parse_args(argv=None, environ=None):
             f"stage2_{args.model}_seed{args.seed}"
             + (f"_dev_fold{args.fold}" if args.development else "")
             + ("_smoke" if args.smoke else "")
+            + ("_resumecheck" if args.check_amp_resume else "")
         )
     )
     args.trainer = TRAINERS[args.model]
@@ -191,6 +200,11 @@ def experiment_fingerprints(args, trainer, source_root):
         "training/nnUNetTrainer/nnUNetTrainerMambaUNetAttnRes.py",
         "inference/predict_from_raw_data.py",
     )
+    if args.model == "C-Contextrast":
+        names += ("training/loss/organ_contrast.py", "training/logging/nnunet_logger.py",
+                  "training/nnUNetTrainer/nnUNetTrainerMambaUNetCContextrast.py")
+        if args.check_amp_resume:
+            code["scripts/contrast_resume_smoke.py"] = sha256_file(Path(__file__).with_name("contrast_resume_smoke.py"))
     for name in names:
         file = source_root / "nnunetv2" / name
         code["umamba/nnunetv2/" + name] = sha256_file(file)
@@ -299,6 +313,8 @@ def run_experiment(args):
     folder.mkdir(parents=True, exist_ok=True)
     if args.continue_training:
         resume_checkpoint = checkpoint_for_resume(folder)
+        if args.check_amp_resume and resume_checkpoint.name != "checkpoint_latest.pth":
+            raise RuntimeError("Resume smoke requires the first process's checkpoint_latest.pth")
     else:
         resume_checkpoint = None
         if any((folder / name).is_file() for name in
@@ -363,9 +379,22 @@ def run_experiment(args):
                                        config=vars(args))
                 if args.continue_training:
                     maybe_load_checkpoint(trainer, True, False)
+                if args.check_amp_resume:
+                    from contrast_resume_smoke import instrument_amp_smoke
+                    instrument_amp_smoke(trainer, args.continue_training, manifest)
                 manifest["status"] = "training"
                 write_manifest(manifest, history_path, latest_path)
-                trainer.run_training()
+                if args.check_amp_resume:
+                    from contrast_resume_smoke import CheckpointReady
+                    try:
+                        trainer.run_training()
+                    except CheckpointReady:
+                        manifest["status"] = "checkpoint_ready_for_fresh_process"
+                        return
+                    if not args.continue_training or not manifest["amp_steps"]:
+                        raise RuntimeError("AMP smoke did not run a resumed optimization step")
+                else:
+                    trainer.run_training()
                 if args.final_validation:
                     best = folder / "checkpoint_best.pth"
                     if not best.is_file():
